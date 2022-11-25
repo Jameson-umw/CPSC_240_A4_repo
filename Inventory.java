@@ -60,6 +60,14 @@ public class Inventory {
 
     }
 
+    public int getInventoryWeight(){
+        int weight=0;
+        for(Item item: items){
+            weight=weight+item.getWeight();
+        }
+        return weight;
+    }
+
     // Just adds an item from the inventory
     public void addItem(Item item){
         items.add(item);
