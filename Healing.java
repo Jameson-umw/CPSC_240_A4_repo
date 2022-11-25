@@ -25,4 +25,5 @@ public class Healing extends Item{
     public boolean getEquipped(){
         return false;
     }
+
 }
