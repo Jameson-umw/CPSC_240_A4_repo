@@ -3,6 +3,11 @@ public class Character {
     private int power;
     private int defense;
 
+    public Character(){
+        health=100;
+        power=1;
+        defense=1;
+    }
     public int getHealth() {
         return health;
     }
