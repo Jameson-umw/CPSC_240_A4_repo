@@ -66,7 +66,7 @@ public class Inventory {
         items.add(item);
     }
 
-    public void removeItem(Item item){
+    public void remove(Item item){
         if(item.equals(equippedWeapon) || item.equals(equippedArmor)){
             unequipItem(item);
         }
@@ -75,5 +75,12 @@ public class Inventory {
 
     public int getInventoryWeight(){
         return inventoryWeight;
+    }
+
+    public Weapon getEquippedWeapon(){
+        return equippedWeapon;
+    }
+    public Armor getEquippedArmor(){
+        return equippedArmor;
     }
 }

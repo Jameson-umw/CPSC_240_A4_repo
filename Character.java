@@ -77,4 +77,9 @@ public abstract class Character {
         this.defense = defense;
     }
 
+    abstract public Weapon getEWeapon();
+    abstract public Armor getEArmor();
+    abstract public void removeItem(Item item);
+
+
 }

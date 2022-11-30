@@ -15,6 +15,10 @@ public abstract class Item {
     public int getDurability(){
         return durability;
     }
+
+    public void setDurability(int durability){
+        this.durability=durability;
+    }
     // getter methods
     public String getItemName(){
         return itemName;

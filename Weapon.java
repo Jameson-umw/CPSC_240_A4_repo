@@ -28,4 +28,8 @@ public class Weapon extends Item{
             equipped=true;
         }
     }
+
+    public int getStrength(){
+        return strength;
+    }
 }

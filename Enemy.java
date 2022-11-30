@@ -16,4 +16,16 @@ public class Enemy extends Character{
         Armor armor = armorList(turnCount);
         enemyInventory.addItem(armor);
     }
+
+    public Weapon getEWeapon(){
+        return enemyInventory.getEquippedWeapon();
+    }
+
+    public Armor getEArmor(){
+        return enemyInventory.getEquippedArmor();
+    }
+
+    public void removeItem(Item item){
+        enemyInventory.remove(item);
+    }
 }

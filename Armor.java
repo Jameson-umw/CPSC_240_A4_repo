@@ -28,4 +28,8 @@ public class Armor extends Item{
             equipped=true;
         }
     }
+
+    public int getToughness(){
+        return toughness;
+    }
 }

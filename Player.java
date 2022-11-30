@@ -37,6 +37,18 @@ public class Player extends Character {
         playerInventory.print();
     }
 
+    public Weapon getEWeapon(){
+        return playerInventory.getEquippedWeapon();
+    }
+
+    public Armor getEArmor(){
+        return playerInventory.getEquippedArmor();
+    }
+
+    public void removeItem(Item item){
+        playerInventory.remove(item);
+    }
+
     public void getImageDimensions() {
         width = image.getWidth(null);
         height = image.getHeight(null);
