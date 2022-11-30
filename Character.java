@@ -8,6 +8,7 @@ public abstract class Character {
     //A number that we are able to change to our needs
     protected static final int maxInventoryWeight = 35;
 
+
     public Character(){
         health=100;
         power=1;
