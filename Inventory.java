@@ -5,6 +5,7 @@ public class Inventory {
     private ArrayList<Item> items;
     private Weapon equippedWeapon;
     private Armor equippedArmor;
+    private int inventoryWeight;
 
     // Constructor
     public Inventory() {
@@ -12,11 +13,11 @@ public class Inventory {
         this.items = items;
         this.equippedWeapon=equippedWeapon;
         this.equippedArmor=equippedArmor;
+        this.inventoryWeight=inventoryWeight;
     }
 
     // Changes the equipped status of armor and weapons
     // May fail if there is no longer an item equipped/ at the start when a player has no weapon
-    // May require a try/catch block in case someone attempts to equip a healing item. Though, I feel that this should work just fine
     public void equipItem(Item item){
         if(item.getEquipped()==false) {
             if (item.getItemType().equals("Weapon")) {
@@ -45,27 +46,19 @@ public class Inventory {
         }
     }
 
-    // Returns the value of a heal item, and removes it from the inventory. Later when we program health, we can call this method, and then add value to player health
-    public int useHealing(Healing healItem){
-        int value=0;
-        if(items.contains(healItem)){
-            value = healItem.getHealValue();
-            removeItem(healItem);
-        }
-        return value;
-    }
-
     //we can make this method later, while its very simple, im not sure yet on what we are doing with this just yet
     public void print(){
-
+        for(Item item: items){
+            System.out.println(item.getItemName());
+            System.out.println(item.getDurability());
+        }
     }
 
-    public int getInventoryWeight(){
-        int weight=0;
+    public void setInventoryWeight(){
+        inventoryWeight=0;
         for(Item item: items){
-            weight=weight+item.getWeight();
+            inventoryWeight=inventoryWeight+item.getWeight();
         }
-        return weight;
     }
 
     // Just adds an item from the inventory
@@ -74,6 +67,13 @@ public class Inventory {
     }
 
     public void removeItem(Item item){
+        if(item.equals(equippedWeapon) || item.equals(equippedArmor)){
+            unequipItem(item);
+        }
         items.remove(item);
+    }
+
+    public int getInventoryWeight(){
+        return inventoryWeight;
     }
 }

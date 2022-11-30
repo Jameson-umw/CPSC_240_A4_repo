@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fa11017c-e06d-4aa7-abe8-f279fcf07351" name="Changes" comment="Trying to figure out git, pushing empty main">
+      <change beforePath="$PROJECT_DIR$/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Armor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Healing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/Weapon.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2GxKn6D72IK2IC7XjhsZfVj1E3Y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa11017c-e06d-4aa7-abe8-f279fcf07351" name="Changes" comment="" />
+      <created>1667324958685</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667324958685</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added my name">
+      <created>1667325112268</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667325112268</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Created iteration 1 of the inventory and items">
+      <created>1669400450312</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669400450312</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created iteration 1 of the inventory and items">
+      <created>1669400797912</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669400797912</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created iteration 1 of the inventory and items">
+      <created>1669400823611</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669400823611</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created iteration 1 of the inventory and items">
+      <created>1669406372048</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669406372048</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Moved items to a folder, trying to figure out git pushes">
+      <created>1669406959018</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669406959018</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Trying to figure out git, pushing empty main">
+      <created>1669407566958</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669407566958</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added my name" />
+    <MESSAGE value="Created iteration 1 of the inventory and items" />
+    <MESSAGE value="Moved items to a folder, trying to figure out git pushes" />
+    <MESSAGE value="Trying to figure out git, pushing empty main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to figure out git, pushing empty main" />
+  </component>
+</project>

@@ -1,25 +1,13 @@
 public class Armor extends Item{
 
-    private int strength;
-    private int durability;
+    private int toughness;
     private boolean equipped;
 
     // Constructor
-    public Armor(int weight, String itemName, int strength, int durability, boolean equipped) {
-        super(weight, itemName);
-        this.strength = strength;
-        this.durability = durability;
+    public Armor(int weight, String itemName, int durability, int toughness, boolean equipped) {
+        super(weight, itemName, durability);
+        this.toughness=toughness;
         this.equipped = equipped;
-    }
-
-    // getter methods
-    public int getStrength(){
-        return strength;
-    }
-
-    // getter methods
-    public int getDurability(){
-        return durability;
     }
 
     // getter methods
