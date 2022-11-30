@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Player extends Character {
@@ -7,7 +11,8 @@ public class Player extends Character {
     public int yPos;
     public int width;
     public int height;
-    public Image image;
+    public BufferedImage playerStill;
+    public BufferedImage playerWalk;
     public boolean visible;
     private Inventory playerInventory;
 
@@ -17,6 +22,11 @@ public class Player extends Character {
         this.xPos=xPos;
         this.yPos=yPos;
         visible=true;
+        try{
+            playerStill= ImageIO.read(new File(""));
+            playerWalk= ImageIO.read(new File(""));
+        }
+        catch(IOException e){}
     }
 
     public void generateWeapon(int turnCount) {
@@ -49,38 +59,4 @@ public class Player extends Character {
         playerInventory.remove(item);
     }
 
-    public void getImageDimensions() {
-        width = image.getWidth(null);
-        height = image.getHeight(null);
-    }
-
-    public void loadImage(String imageName) {
-        ImageIcon imIcon = new ImageIcon(imageName);
-        image = imIcon.getImage();
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public int getxPos() {
-        return xPos;
-    }
-
-    public int getyPos() {
-        return yPos;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle(xPos, yPos, width, height);
-
-    }
 }
