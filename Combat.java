@@ -1,6 +1,7 @@
 public class Combat {
 
     public Combat(Player player, Enemy enemy){
+        player.updatePlayer();
         while(player.getHealth() >0 || enemy.getHealth()>0){
             // player go first
             playerCombat(player,enemy);
@@ -16,8 +17,8 @@ public class Combat {
         }
     }
     public void playerCombat(Player player, Enemy enemy){
-        if(player.getEWeapon().getStrength()>=(enemy.getEArmor().getToughness() + enemy.getDefense())){
-            enemy.setHealth(enemy.getHealth()-player.getEWeapon().getStrength()+enemy.getEArmor().getToughness()+enemy.getDefense());
+        if((player.getEWeapon().getStrength()+player.getPower())>=(enemy.getEArmor().getToughness() + enemy.getDefense())){
+            enemy.setHealth(enemy.getHealth()-player.getEWeapon().getStrength()+enemy.getEArmor().getToughness()+enemy.getDefense()-player.getPower());
             player.getEWeapon().setDurability(player.getEWeapon().getDurability()-enemy.getEArmor().getToughness());
             enemy.getEArmor().setDurability(enemy.getEArmor().getDurability()-player.getEWeapon().getStrength());
         } else if (player.getEWeapon().equals(null)){

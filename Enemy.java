@@ -10,7 +10,8 @@ public class Enemy extends Character{
     }
 
     public void generateEnemy(int turnCount){
-        setDefense(getDefense()+turnCount-1);
+        setDefense(1+turnCount/3);
+        setPower(1+turnCount/4);
         Weapon weapon = weaponlist(turnCount);
         enemyInventory.addItem(weapon);
         Armor armor = armorList(turnCount);
