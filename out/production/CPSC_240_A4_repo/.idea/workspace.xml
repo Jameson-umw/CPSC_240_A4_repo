@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa11017c-e06d-4aa7-abe8-f279fcf07351" name="Changes" comment="Trying to figure out git, pushing empty main">
-      <change beforePath="$PROJECT_DIR$/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Armor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Healing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/Weapon.java" afterDir="false" />
-    </list>
+    <list default="true" id="26b0b3bc-fd0b-4458-9b8f-82c135ebb0d6" name="Changes" comment="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,82 +21,61 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2GxKn6D72IK2IC7XjhsZfVj1E3Y" />
+  <component name="ProjectId" id="2GxKPVUMpNus1naOqjlFuuNHauT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fa11017c-e06d-4aa7-abe8-f279fcf07351" name="Changes" comment="" />
-      <created>1667324958685</created>
+      <changelist id="26b0b3bc-fd0b-4458-9b8f-82c135ebb0d6" name="Changes" comment="" />
+      <created>1667324770839</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1667324958685</updated>
+      <updated>1667324770839</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added my name">
-      <created>1667325112268</created>
+    <task id="LOCAL-00001" summary="Added name">
+      <created>1667325350673</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1667325112268</updated>
+      <updated>1667325350673</updated>
     </task>
-    <task id="LOCAL-00002" summary="Created iteration 1 of the inventory and items">
-      <created>1669400450312</created>
+    <task id="LOCAL-00002" summary="Added name">
+      <created>1667325436327</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1669400450312</updated>
+      <updated>1667325436327</updated>
     </task>
-    <task id="LOCAL-00003" summary="Created iteration 1 of the inventory and items">
-      <created>1669400797912</created>
+    <task id="LOCAL-00003" summary="Added email">
+      <created>1667325570896</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1669400797912</updated>
+      <updated>1667325570896</updated>
     </task>
-    <task id="LOCAL-00004" summary="Created iteration 1 of the inventory and items">
-      <created>1669400823611</created>
+    <task id="LOCAL-00004" summary="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name">
+      <created>1669693933497</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1669400823611</updated>
+      <updated>1669693933497</updated>
     </task>
-    <task id="LOCAL-00005" summary="Created iteration 1 of the inventory and items">
-      <created>1669406372048</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1669406372048</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Moved items to a folder, trying to figure out git pushes">
-      <created>1669406959018</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1669406959018</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Trying to figure out git, pushing empty main">
-      <created>1669407566958</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669407566958</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,10 +90,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added my name" />
-    <MESSAGE value="Created iteration 1 of the inventory and items" />
-    <MESSAGE value="Moved items to a folder, trying to figure out git pushes" />
-    <MESSAGE value="Trying to figure out git, pushing empty main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to figure out git, pushing empty main" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added name" />
+    <MESSAGE value="Added email" />
+    <MESSAGE value="Moved non-code files to its own folder and made the Character class with getters and setters" />
+    <MESSAGE value="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name" />
   </component>
 </project>
