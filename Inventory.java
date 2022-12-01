@@ -32,7 +32,7 @@ public class Inventory {
                     item.changeEquip();
                     equippedWeapon = (Weapon) item;
                 }
-            } else if (item.getItemType().equals("Armor")) {
+            } else {
                 try {
                     equippedArmor.changeEquip();
                     item.changeEquip();

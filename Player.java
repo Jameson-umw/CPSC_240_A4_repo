@@ -26,7 +26,7 @@ public class Player extends Character {
         if(obtainedWeapon){
             notif(ItemStatus.OBTAINED);
         }else {
-            if(playerInventory.getInventoryWeight() < maxInventoryWeight){
+            if((playerInventory.getInventoryWeight()+weapon.weight) < maxInventoryWeight){
                 playerInventory.addItem(weapon);
                 notif(ItemStatus.FITS);
             } else {
@@ -44,7 +44,7 @@ public class Player extends Character {
         if(obtainedArmor){
             notif(ItemStatus.OBTAINED);
         } else{
-            if(playerInventory.getInventoryWeight()<maxInventoryWeight){
+            if((playerInventory.getInventoryWeight() + armor.weight)<maxInventoryWeight){
                 playerInventory.addItem(armor);
                 notif(ItemStatus.FITS);
             } else {
@@ -63,7 +63,7 @@ public class Player extends Character {
                 JOptionPane.showMessageDialog(g.sendFrametoNotif(),"You already obtained that item");
                 break;
             case NOTFIT:
-                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"Your bag is full. Drop an item and try again");
+                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"Your bag is too full. Drop an item and try again");
                 break;
             case FITS:
                 JOptionPane.showMessageDialog(g.sendFrametoNotif(),"An item was added to your inventory!");
@@ -165,8 +165,8 @@ public class Player extends Character {
     //Updates health, strength, and power of the player
     public void updatePlayer(int turnCount){
         setHealth(100);
-        setDefense(1+turnCount/5);
-        setPower(3+turnCount/5);
+        setDefense(4+turnCount/5);
+        setPower(5+turnCount/5);
     }
 
     //TODO call to get the inventory of the player. Display in a menu?

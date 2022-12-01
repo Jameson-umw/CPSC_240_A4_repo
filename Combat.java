@@ -105,6 +105,7 @@ public class Combat {
             player.getEWeapon().setDurability(wDurability - toughness);
             if (wDurability <= 0) {
                 player.removeItem(player.getEWeapon());
+                System.out.println("Your equipped weapon broke");
             }
         }catch (NullPointerException e) {
         }
@@ -112,6 +113,7 @@ public class Combat {
             enemy.getEArmor().setDurability(aDurability - strength);
             if (aDurability <= 0) {
                 enemy.removeItem(enemy.getEArmor());
+                System.out.println("Your equipped armor broke");
             }
         }catch (NullPointerException e) {
         }
