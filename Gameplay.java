@@ -29,6 +29,7 @@ public class Gameplay implements Runnable{
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
+  //private BufferedImage room1; private BufferedImage room2; private BufferedImage room3;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
@@ -44,6 +45,9 @@ public class Gameplay implements Runnable{
             sRack=ImageIO.read(new File("Sprites/swordRack.png"));
             slime=ImageIO.read(new File("Sprites/slime.png"));
             chest=ImageIO.read(new File("Sprites/chest.png"));
+            //room1=ImageIO.read(new File("Sprites/dungeon_room.png"));
+            //room2=ImageIO.read(new File("Sprites/dungeon_room.png"));
+            //room3=ImageIO.read(new File("Sprites/dungeon_room.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -99,16 +103,19 @@ public class Gameplay implements Runnable{
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
         if(roomNum==1){
+            //g.drawImage(room1,0,0,null);
             g.drawImage(aRack,500,150,null);
             g.drawImage(sRack,500,450,null);
             g.drawImage(door1,943,300,null);
         }
         if(roomNum==2){
+            //g.drawImage(room2,0,0,null);
             g.drawImage(door2,943,300,null);
             if(slimeCount<10){
             g.drawImage(slime,500,300,null);
         }}
         if(roomNum==3){
+            //g.drawImage(room3,0,0,null);
             g.drawImage(door3,943,300,null);
             g.drawImage(chest,500,300,null);
         }
@@ -171,8 +178,8 @@ public class Gameplay implements Runnable{
                 if(!slimeTouch){
                     slimeTouch=true;
                 Combat combat = new Combat(turnCount, player, enemy);
-                Boolean win = combat.getWin();
-            }}
+                boolean win = combat.getWin();
+         }}
         }
     }
     public void touchArmorRack(){
