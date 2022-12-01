@@ -11,7 +11,10 @@ import java.io.IOException;
 public class Gameplay implements Runnable{
     private int roomNum=1;
     private int turnCount;
+    private boolean obtainedWeapon=false;
+    private boolean obtainedArmor=false;
     public Player player = new Player();
+    public Enemy enemy = new Enemy();
     //number of times key is pressed
     int walkCount=1;
     //x and y position
@@ -103,9 +106,16 @@ public class Gameplay implements Runnable{
         this.turnCount=turnCount;
     }
 
-    //@TODO We need the sprites and stuff and we need someone to import img files
+    public void resetRoom(){
+        enemy=new Enemy();
+        enemy.generateEnemy(turnCount);
+        obtainedWeapon=false;
+        obtainedArmor=false;
+    }
+
     public void GAMEPLAY(){
         player.fileMaker();
+        enemy.generateEnemy(turnCount);
 
 
     }

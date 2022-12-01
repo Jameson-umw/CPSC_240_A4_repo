@@ -10,7 +10,9 @@ public class Combat {
             enemyCombat(player,enemy);
             // check winner
             //@TODO Make this into a functioning thing
+            //@TODO Play the youve been killed screen
             if(player.getHealth()<=0){
+                player.fileDeleter();
                 break;
             } else if (enemy.getHealth()<=0){
                 break;

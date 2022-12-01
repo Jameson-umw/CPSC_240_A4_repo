@@ -18,16 +18,18 @@ public class Player extends Character {
         this.playerInventory = playerInventory;
     }
 
-    public void generateWeapon(int turnCount) {
+    //TODO call this when we overlap with the weapon stand
+    public void generateWeapon(int turnCount, boolean obtainedWeapon) {
         Weapon weapon = weaponlist(turnCount);
-        if (playerInventory.getInventoryWeight() < maxInventoryWeight) {
+        if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedWeapon) {
             playerInventory.addItem(weapon);
         }
     }
 
-    public void generateArmor(int turnCount) {
+    //TODO call this when we overlap with the armor stand
+    public void generateArmor(int turnCount, boolean obtainedArmor) {
         Armor armor = armorList(turnCount);
-        if (playerInventory.getInventoryWeight() < maxInventoryWeight) {
+        if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedArmor) {
             playerInventory.addItem(armor);
         }
     }
