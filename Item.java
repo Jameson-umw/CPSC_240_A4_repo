@@ -19,6 +19,8 @@ public abstract class Item {
     public void setDurability(int durability){
         this.durability=durability;
     }
+
+
     // getter methods
     public String getItemName(){
         return itemName;
@@ -32,4 +34,5 @@ public abstract class Item {
     abstract public boolean getEquipped();
     abstract public String getItemType();
     abstract public void changeEquip();
+    abstract public int getValue();
 }

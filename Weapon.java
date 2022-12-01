@@ -32,4 +32,11 @@ public class Weapon extends Item{
     public int getStrength(){
         return strength;
     }
+
+    public int getValue(){
+        if(getItemType().equals("Armor")){
+            return strength;
+        }
+        return 0;
+    }
 }
