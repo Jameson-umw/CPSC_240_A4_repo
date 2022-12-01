@@ -133,6 +133,9 @@ public class Inventory {
         }
     }
 
+    public ArrayList<Item>getInventory(){
+        return items;
+    }
     public int getInventoryWeight(){
         return inventoryWeight;
     }

@@ -3,6 +3,7 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -172,6 +173,11 @@ public class Player extends Character {
     //TODO call to get the inventory of the player. Display in a menu?
     public void printInventory() {
         playerInventory.print();
+    }
+
+    //get inventory for inventory menu
+    public ArrayList<Item> getPlayerInventory(){
+        return  playerInventory.getInventory();
     }
 
     //inheritence methods
