@@ -1,3 +1,5 @@
+package NonCodeFiles;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,19 +10,20 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Gameplay implements Runnable{
-    BufferedImage image;
-    BufferedImage image2;
-    BufferedImage anim;
+public class test implements Runnable{
+    JFrame frame;
     int xPos=50;
     int yPos=50;
-    int walkCount=1;
-    private int turnCount;
-    public Player player = new Player();
-    JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
+    Canvas canvas;
+    BufferStrategy bufferStrategy;
+    boolean running=true;
+    BufferedImage image;
+    BufferedImage image2;
+    int walkCount;
+    BufferedImage anim;
 
-    public Gameplay(){
-        frame=new JFrame("Final Project");
+    public test(){
+        frame=new JFrame("Basic Game");
         JPanel panel=(JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(1000,650));
         panel.setLayout(null);
@@ -45,32 +48,11 @@ public class Gameplay implements Runnable{
             image2=ImageIO.read(new File("knight l1.png"));
         }
         catch(IOException e){}
+        canvas.requestFocus();
+        walkCount=1;
         anim=image;
-        this.turnCount=1;
-        GAMEPLAY();
+
     }
-   /* public void setUp(){
-        frame=new JFrame("Final Project");
-        JPanel panel=(JPanel) frame.getContentPane();
-        panel.setPreferredSize(new Dimension(1000,650));
-        panel.setLayout(null);
-        canvas=new Canvas();
-        canvas.setBounds(0,0,1000,650);
-        canvas.setIgnoreRepaint(true);
-        panel.add(canvas);
-        canvas.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent event){
-                moveIt(event);
-            }
-        });
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
-        canvas.createBufferStrategy(2);
-        bufferStrategy= canvas.getBufferStrategy();
-    }*/
     public void run(){
         while(running=true){
             Paint();
@@ -80,8 +62,9 @@ public class Gameplay implements Runnable{
             catch (InterruptedException e){}
         }
     }
+
     public static void main(String[] args) {
-        Gameplay ex=new Gameplay();
+        test ex=new test();
         new Thread(ex).start();
     }
     public void Paint(){
@@ -93,29 +76,17 @@ public class Gameplay implements Runnable{
 
     }
     protected void Paint(Graphics2D g) {
-        g.fillRect(xPos,yPos, 65,65);
-    }
-    public int getTurnCount(){
-        return turnCount;
-    }
-
-    public void setTurnCount(){
-        this.turnCount=turnCount;
-    }
-
-    //@TODO We need the sprites and stuff and we need someone to import img files
-    public void GAMEPLAY(){
-        player.fileReader();
-
+        //paints luigi
+        g.drawImage(anim, xPos, yPos, null);
 
     }
-    //moves player according to keystroke
+    //moves character accordingly
     public void moveIt(KeyEvent evt){
         switchIm();
         switch(evt.getKeyCode()){
             case KeyEvent.VK_DOWN:
                 if((yPos+5)>600){yPos=600;}
-                else{yPos+=5;}
+                    else{yPos+=5;}
                 break;
             case KeyEvent.VK_UP:
                 if((yPos-5)<0){yPos=0;}

@@ -9,6 +9,7 @@ import javax.swing.*;
 public class Player extends Character {
 
     //x and y pos of player
+    int walkCount;
     private int xPos;
     private int yPos;
     private BufferedImage playerStill;
@@ -20,15 +21,13 @@ public class Player extends Character {
     public Player() {
         Inventory playerInventory = new Inventory();
         this.playerInventory = playerInventory;
-        this.xPos=xPos;
-        this.yPos=yPos;
-        visible=true;
+        walkCount=1;
         try{
             playerStill= ImageIO.read(new File("knight l1.png"));
             playerWalk= ImageIO.read(new File("knight l2.png"));
         }
         catch(IOException e){}
-        anim=playerStill;
+        setAnim(getPlayerStill());
     }
 
     public void generateWeapon(int turnCount) {
@@ -144,4 +143,11 @@ public class Player extends Character {
     public BufferedImage getPlayerWalk() {return playerWalk;}
 
     public BufferedImage getPlayerStill() {return playerStill;}
+   //switches image of player
+    public void switchIm(){
+        if((walkCount%5)==0){
+            if(anim==playerStill){anim=playerWalk;}
+            else{anim=playerStill;}}
+        walkCount++;
+    }
 }
