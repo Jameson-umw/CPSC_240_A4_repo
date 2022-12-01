@@ -11,6 +11,8 @@ import java.io.IOException;
 public class Gameplay implements Runnable{
     private int roomNum=1;
     private int turnCount;
+    private boolean chestTouch=false;
+    private boolean slimeTouch=false;
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
     public Player player = new Player();
@@ -151,12 +153,44 @@ public class Gameplay implements Runnable{
         }
         walkCount++;
         newRoom();
+        touchChest();
+        touchEnemy();
+        touchArmorRack();
+        touchWeaponRack();
     }
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
             if(anim.equals(image1)){anim=image2;}
             else{anim=image1;}}
+    }
+    public void touchChest(){
+        if(roomNum==3&&!chestTouch){
+            if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
+                chestTouch=true;
+            }
+        }
+    }
+    public void touchEnemy(){
+        if(roomNum==2&&!slimeTouch){
+            if(485<=xPos && 285<=yPos && 580>=xPos && 380>=yPos){
+                slimeTouch=true;
+            }
+        }
+    }
+    public void touchArmorRack(){
+        if(roomNum==1&&!obtainedArmor){
+            if(485<=xPos && 610>=xPos && 135<=yPos && 265>=yPos){
+                obtainedArmor=true;
+            }
+        }
+    }
+    public void touchWeaponRack(){
+        if(roomNum==1&&!obtainedWeapon){
+            if(485<=xPos && 615>=xPos && 435<=yPos && 565>=yPos){
+                obtainedWeapon=true;
+            }
+        }
     }
     public void newRoom(){
         if((925<=xPos)&&(280<=yPos)&&(yPos<=420)){
@@ -165,6 +199,10 @@ public class Gameplay implements Runnable{
                 yPos=300;
                 roomNum++;}
             else{
+                chestTouch=false;
+                slimeTouch=false;
+                obtainedArmor=false;
+                obtainedWeapon=false;
                 xPos=25;
                 yPos=300;
                 roomNum=1;

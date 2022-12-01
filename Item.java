@@ -1,5 +1,5 @@
 public abstract class Item {
-
+//comment
     protected int weight;
     protected String itemName;
     private int durability;
