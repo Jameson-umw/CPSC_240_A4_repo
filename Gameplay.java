@@ -21,6 +21,8 @@ public class Gameplay implements Runnable{
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
     private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
     private BufferedImage aRack; private BufferedImage sRack;
+    private BufferedImage slime;
+    private BufferedImage chest;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
@@ -34,6 +36,8 @@ public class Gameplay implements Runnable{
             door3=ImageIO.read(new File("Sprites/door.png"));
             aRack=ImageIO.read(new File("Sprites/armorRack.png"));
             sRack=ImageIO.read(new File("Sprites/swordRack.png"));
+            slime=ImageIO.read(new File("Sprites/slime.png"));
+            chest=ImageIO.read(new File("Sprites/chest.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -95,9 +99,11 @@ public class Gameplay implements Runnable{
         }
         if(roomNum==2){
             g.drawImage(door2,943,300,null);
+            g.drawImage(slime,500,300,null);
         }
         if(roomNum==3){
             g.drawImage(door3,943,300,null);
+            g.drawImage(chest,500,300,null);
         }
     }
     public int getTurnCount(){
@@ -142,5 +148,8 @@ public class Gameplay implements Runnable{
         if((walkCount%5)==0){
             if(anim.equals(image1)){anim=image2;}
             else{anim=image1;}}
+    }
+    public void newRoom(){
+
     }
 }
