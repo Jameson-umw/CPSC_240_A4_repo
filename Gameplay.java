@@ -314,6 +314,7 @@ public class Gameplay implements Runnable{
                         //for checking
                         //System.out.println(i+":"+item.itemName);
                         //i++;
+//
 
                         menuItem=new JMenuItem(item.itemName);
                         popupMenu.add(menuItem);
