@@ -9,7 +9,6 @@ public class Gameplay {
     public Gameplay(){
         this.turnCount=1;
         GAMEPLAY();
-
     }
 
     public int getTurnCount(){
@@ -26,6 +25,7 @@ public class Gameplay {
 
 
     }
+
     public void moveIt(KeyEvent evt){
         switchIm();
         int xPos=player.getxPos();

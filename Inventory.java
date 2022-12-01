@@ -81,6 +81,8 @@ public class Inventory {
         }
         try {
             FileWriter myWriter = new FileWriter("save.txt");
+            myWriter.write(String.valueOf(turnCount));
+            myWriter.write(String.format("%n"));
         for(Item item: items) {
             myWriter.write(String.valueOf(item.getWeight()));
             myWriter.write(String.format("%n"));
