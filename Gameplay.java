@@ -183,14 +183,12 @@ public class Gameplay implements Runnable{
     public void touchArmorRack(){
         if(roomNum==1&&!obtainedArmor){
             if(485<=xPos && 610>=xPos && 135<=yPos && 265>=yPos){
-                obtainedArmor=true;
             }
         }
     }
     public void touchWeaponRack(){
         if(roomNum==1&&!obtainedWeapon){
             if(485<=xPos && 615>=xPos && 435<=yPos && 565>=yPos){
-                obtainedWeapon=true;
             }
         }
     }
@@ -203,8 +201,7 @@ public class Gameplay implements Runnable{
             else{
                 chestTouch=false;
                 slimeTouch=false;
-                obtainedArmor=false;
-                obtainedWeapon=false;
+                resetRoom();
                 xPos=25;
                 yPos=300;
                 roomNum=1;
