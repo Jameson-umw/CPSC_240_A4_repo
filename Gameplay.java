@@ -279,10 +279,18 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-                        System.out.println(i+":"+item.itemName);
-                        i++;
+                        //for checking
+                        //System.out.println(i+":"+item.itemName);
+                        //i++;
 
-                        menuItem=new JMenuItem(item.itemName);
+                        //if the item is equipped, add a star to it
+                        if(item.equals(player.getEArmor())){
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else if (item.equals(player.getEWeapon())) {
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else {
+                            menuItem=new JMenuItem(item.itemName);
+                        }
                         popupMenu.add(menuItem);
                     }
                     popupMenu.show(frame,300,300);
@@ -296,7 +304,33 @@ public class Gameplay implements Runnable{
         equip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JMenuItem menuItem;
+                int i=1;
                 //for each item in the inventory, print it as a button. When that button is pressed, equip that item
+                if(player.getPlayerInventory().size()>0){
+                    for (Item item:player.getPlayerInventory()) {
+                        //for checking
+                        //System.out.println(i+":"+item.itemName);
+                        //i++;
+
+                        menuItem=new JMenuItem(item.itemName);
+                        popupMenu.add(menuItem);
+
+                        menuItem.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //idk why it accepts an item and not a number, but it works
+                                inventory.equipItem(item);
+                                JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
+                            }
+                        });
+                    }
+                    popupMenu.show(frame,300,300);
+                } else {
+                    menuItem=new JMenuItem("There's nothing in your inventory");
+                    popupMenu.add(menuItem);
+                    popupMenu.show(frame,300,300);
+                }
             }
         });
         drop.addActionListener(new ActionListener() {
