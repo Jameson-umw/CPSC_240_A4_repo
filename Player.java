@@ -24,8 +24,8 @@ public class Player extends Character {
         this.yPos=yPos;
         visible=true;
         try{
-            playerStill= ImageIO.read(new File(""));
-            playerWalk= ImageIO.read(new File(""));
+            playerStill= ImageIO.read(new File("knight l1.png"));
+            playerWalk= ImageIO.read(new File("knight l2.png"));
         }
         catch(IOException e){}
         anim=playerStill;
