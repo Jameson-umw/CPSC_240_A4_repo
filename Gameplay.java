@@ -105,7 +105,7 @@ public class Gameplay implements Runnable{
 
     //@TODO We need the sprites and stuff and we need someone to import img files
     public void GAMEPLAY(){
-        player.fileReader();
+        player.fileMaker();
 
 
     }

@@ -75,12 +75,12 @@ public class Inventory {
 
     public void saveState(int turnCount){
         try{
-            new FileOutputStream("save.txt", false).close();
+            new FileOutputStream("./SaveFile/save.txt", false).close();
         } catch(IOException e) {
             e.printStackTrace();
         }
         try {
-            FileWriter myWriter = new FileWriter("save.txt");
+            FileWriter myWriter = new FileWriter("./SaveFile/save.txt");
             myWriter.write(String.valueOf(turnCount));
             myWriter.write(String.format("%n"));
         for(Item item: items) {
