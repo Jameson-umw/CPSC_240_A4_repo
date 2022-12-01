@@ -22,8 +22,16 @@ public class Player extends Character {
     // Makes a random weapon
     public void generateWeapon(int turnCount, boolean obtainedWeapon) {
         Weapon weapon = weaponlist(turnCount);
-        if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedWeapon) {
-            playerInventory.addItem(weapon);
+        //reworked if statement to fit notif method
+        if(obtainedWeapon){
+            notif(ItemStatus.OBTAINED);
+        }else {
+            if(playerInventory.getInventoryWeight() < maxInventoryWeight){
+                playerInventory.addItem(weapon);
+                notif(ItemStatus.FITS);
+            } else {
+                notif(ItemStatus.NOTFIT);
+            }
         }
         playerInventory.setInventoryWeight();
     }
@@ -32,10 +40,34 @@ public class Player extends Character {
     // Makes a random armor piece
     public void generateArmor(int turnCount, boolean obtainedArmor) {
         Armor armor = armorList(turnCount);
-        if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedArmor) {
-            playerInventory.addItem(armor);
+        //reworked if statement to work with notif method
+        if(obtainedArmor){
+            notif(ItemStatus.OBTAINED);
+        } else{
+            if(playerInventory.getInventoryWeight()<maxInventoryWeight){
+                playerInventory.addItem(armor);
+                notif(ItemStatus.FITS);
+            } else {
+                notif(ItemStatus.NOTFIT);
+            }
         }
         playerInventory.setInventoryWeight();
+    }
+
+    public enum ItemStatus{FITS, NOTFIT, OBTAINED}
+    //when item is picked up, or you try to pick something up when the bag is full, display corresponding notification
+    public void notif(ItemStatus status){
+        Gameplay g=new Gameplay();
+        switch (status){
+            case OBTAINED:
+                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"You already obtained that item");
+                break;
+            case NOTFIT:
+                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"Your bag is full. Drop an item and try again");
+                break;
+            case FITS:
+                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"An item was added to your inventory!");
+        }
     }
 
     // Checks to see if there is a previous save. If there is not, it builds a file. if it is not, it calls readSaveGame

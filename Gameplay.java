@@ -218,4 +218,9 @@ public class Gameplay implements Runnable{
 
         }
     }
+
+    public JFrame sendFrametoNotif(){
+        return frame;
+    }
+
 }
