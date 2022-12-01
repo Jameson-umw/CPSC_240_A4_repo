@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gameplay implements Runnable{
+    private int slimeCount=0;
     private int roomNum=1;
     private int turnCount;
     private boolean chestTouch=false;
@@ -104,8 +105,9 @@ public class Gameplay implements Runnable{
         }
         if(roomNum==2){
             g.drawImage(door2,943,300,null);
+            if(slimeCount<10){
             g.drawImage(slime,500,300,null);
-        }
+        }}
         if(roomNum==3){
             g.drawImage(door3,943,300,null);
             g.drawImage(chest,500,300,null);
@@ -157,15 +159,19 @@ public class Gameplay implements Runnable{
         if(roomNum==3&&!chestTouch){
             if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
                 chestTouch=true;
+                player.setHealth(100);
+
             }
         }
     }
     public void touchEnemy(){
-        if(roomNum==2&&!slimeTouch){
+        if(roomNum==2){
             if(485<=xPos && 285<=yPos && 580>=xPos && 380>=yPos){
-                slimeTouch=true;
+                slimeCount++;
+                if(!slimeTouch){
+                    slimeTouch=true;
                 new Combat(turnCount, player, enemy);
-            }
+            }}
         }
     }
     public void touchArmorRack(){
@@ -198,6 +204,7 @@ public class Gameplay implements Runnable{
                 obtainedWeapon=false;
                 xPos=25;
                 yPos=300;
+                slimeCount=0;
                 roomNum=1;
                 turnCount++;
                 int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
