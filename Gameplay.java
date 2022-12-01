@@ -43,6 +43,8 @@ public class Gameplay implements Runnable{
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
+
+    //TODO: Add a JLabel to prompt user to click to start game, jlabel then clears when done
     public Gameplay(){
         //uploading images
         try{
@@ -264,7 +266,14 @@ public class Gameplay implements Runnable{
                         //System.out.println(i+":"+item.itemName);
                         //i++;
 
-                        menuItem=new JMenuItem(item.itemName);
+                        //if the item is equipped, add a star to it
+                        if(item.equals(player.getEArmor())){
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else if (item.equals(player.getEWeapon())) {
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else {
+                            menuItem=new JMenuItem(item.itemName);
+                        }
                         popupMenu.add(menuItem);
                     }
                     popupMenu.show(frame,300,300);
@@ -278,6 +287,7 @@ public class Gameplay implements Runnable{
         equip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //for each item in the inventory, print it as a button. When that button is pressed, equip that item
                 while(true) {
                     player.printInventory();
                     try{
@@ -296,6 +306,51 @@ public class Gameplay implements Runnable{
                     }
                 }
             }
+            /*
+                            JMenuItem menuItem;
+                //for each item in the inventory, print it as a button. When that button is pressed, equip that item
+                if(player.getPlayerInventory().size()>0){
+                    int i=1;
+                    for (Item item:player.getPlayerInventory()) {
+                        //for checking
+                        //System.out.println(i+":"+item.itemName);
+                        //i++;
+//
+
+                        menuItem=new JMenuItem(item.itemName);
+                        popupMenu.add(menuItem);
+
+                        menuItem.addActionListener(new ActionListener() {
+                            //when item is clicked, equip it
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                inventory.equipItem(item);
+                                //it doesn't seem to actually equip, so checking
+                                if(item.equals(inventory.getEquippedArmor())){
+                                    System.out.println("equipped armor");
+                                }else if(item.equals(inventory.getEquippedWeapon())){
+                                    System.out.println("equipped weapon");
+                                }else{
+                                    System.out.println("Didn't actually equip");
+                                }
+                                JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
+                            }
+                        });
+                        //it doesn't seem to actually equip, so checking
+                        if(item.equals(inventory.getEquippedArmor())){
+                            System.out.println("equipped armor");
+                        }else if(item.equals(inventory.getEquippedWeapon())){
+                            System.out.println("equipped weapon");
+                        }else{
+                            System.out.println("Didn't actually equip");
+                        }
+                    }
+                    popupMenu.show(frame,300,300);
+                } else {
+                    menuItem=new JMenuItem("There's nothing in your inventory");
+                    popupMenu.add(menuItem);
+                    popupMenu.show(frame,300,300);
+             */
         });
         drop.addActionListener(new ActionListener() {
             @Override
