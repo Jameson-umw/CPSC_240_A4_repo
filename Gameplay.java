@@ -9,25 +9,32 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gameplay implements Runnable{
+    private int roomNum=1;
     private int turnCount;
     public Player player = new Player();
     //number of times key is pressed
     int walkCount=1;
     //x and y position
-    private int xPos=50;
-    private int yPos=50;
+    private int xPos=25;
+    private int yPos=300;
     //imgs
+    private BufferedImage door;
     private BufferedImage image1;
     private BufferedImage image2;
     private BufferedImage anim;
+    private BufferedImage aRack;
+    private BufferedImage sRack;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
     public Gameplay(){
         //uploading images
         try{
-            image1= ImageIO.read(new File("Sprite/knight l1.png"));
-            image2= ImageIO.read(new File("Sprite/knight l2.png"));
+            image1= ImageIO.read(new File("Sprites/knight l1.png"));
+            image2= ImageIO.read(new File("Sprites/knight l2.png"));
+            door=ImageIO.read(new File("Sprites/door.png"));
+            aRack=ImageIO.read(new File("Sprites/armorRack.png"));
+            sRack=ImageIO.read(new File("Sprites/swordRack.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -53,6 +60,7 @@ public class Gameplay implements Runnable{
         frame.setVisible(true);
         canvas.createBufferStrategy(2);
         bufferStrategy= canvas.getBufferStrategy();
+        //sets up turn count
         this.turnCount=1;
         GAMEPLAY();
     }
@@ -75,12 +83,17 @@ public class Gameplay implements Runnable{
     public void Paint(){
         Graphics2D g=(Graphics2D) bufferStrategy.getDrawGraphics();
         //clears thing on each repaint
-        g.clearRect(0,0,1000,600);
+        g.clearRect(0,0,1000,650);
         Paint(g);
         bufferStrategy.show();
     }
     protected void Paint(Graphics2D g) {
-        g.drawImage(image1,xPos,yPos,null);
+        g.drawImage(anim,xPos,yPos,null);
+        g.drawImage(door,943,300,null);
+        if(roomNum==1){
+            g.drawImage(aRack,500,150,null);
+            g.drawImage(sRack,500,450,null);
+        }
     }
     public int getTurnCount(){
         return turnCount;
@@ -117,12 +130,12 @@ public class Gameplay implements Runnable{
                 else{xPos+=5;}
                 break;
         }
+        walkCount++;
     }
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
-            if(anim==image1){anim=image2;}
+            if(anim.equals(image1)){anim=image2;}
             else{anim=image1;}}
-        walkCount++;
     }
 }
