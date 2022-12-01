@@ -95,10 +95,25 @@ public class Inventory {
 
     // Removes an item from the inventory, and unequips the item should it be equipped
     public void remove(Item item){
+
         if(item.equals(equippedWeapon) || item.equals(equippedArmor)){
             unequipItem(item);
         }
         items.remove(item);
+    }
+
+    public boolean remove(int num){
+        try {
+            Item item = items.get(num - 1);
+            if (item.equals(equippedWeapon) || item.equals(equippedArmor)) {
+                unequipItem(item);
+            }
+            items.remove(item);
+            return true;
+        } catch (IndexOutOfBoundsException e){
+
+        }
+        return false;
     }
 
     // saveState is the method that saves the game. We dont call this method, however. Instead, call player.saveGame
