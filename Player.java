@@ -158,6 +158,10 @@ public class Player extends Character {
         playerInventory.saveState(turnCount);
     }
 
+    public boolean equipNum(int num){
+        return playerInventory.equipItem(num);
+    }
+
     //Updates health, strength, and power of the player
     public void updatePlayer(int turnCount){
         setHealth(100);

@@ -45,6 +45,18 @@ public class Inventory {
         }
     }
 
+    public boolean equipItem(int num){
+        try {
+            Item item = items.get(num - 1);
+            equipItem(item);
+            return true;
+        } catch (IndexOutOfBoundsException e){
+
+        }
+        return false;
+
+    }
+
     // Changes equip status of a weapon or armor to false
     // can likely remove the first if statement, it is more or less a failsafe for performance should the code attempt to unequip a healing item
     public void unequipItem(Item item) {
@@ -61,7 +73,11 @@ public class Inventory {
 
     //we can make this method later, while its very simple, im not sure yet on what we are doing with this just yet
     public void print(){
-
+        int i=1;
+        for(Item item : items) {
+            System.out.println(i+ ": " + item.itemName);
+            i++;
+        }
     }
 
     // updates the inventory weight by looping through all the items

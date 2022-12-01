@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
@@ -73,6 +74,11 @@ public class Gameplay implements Runnable{
                 moveIt(event);
             }
         });
+        /*
+        JButton inventoryButton = new JButton("Inventory");
+        inventoryButton.setBounds(100,100,50,25);
+        frame.add(inventoryButton);
+         */
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setResizable(false);
@@ -81,7 +87,7 @@ public class Gameplay implements Runnable{
         bufferStrategy= canvas.getBufferStrategy();
         //sets up turn count
         this.turnCount=1;
-        GAMEPLAY();
+        turnCount=player.fileMaker();
     }
    //runs the program
     public void run(){
@@ -155,17 +161,7 @@ public class Gameplay implements Runnable{
             }
         }
     }
-    public int getTurnCount(){
-        return turnCount;
-    }
 
-    public void setTurnCount(){
-        this.turnCount=turnCount;
-    }
-
-    public void GAMEPLAY(){
-        player.fileMaker();
-    }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){
         switchIm();
@@ -186,6 +182,27 @@ public class Gameplay implements Runnable{
                 if((xPos+5)>970){xPos=936;}
                 else{xPos+=5;}
                 break;
+                case KeyEvent.VK_I:
+                    while(true) {
+                        player.printInventory();
+                        try{
+                            String name = "";
+                        try {
+                            name = JOptionPane.showInputDialog(frame,
+                                    "What number item do you wish to equip", null);
+                            if(name.equals(null)){break;}
+                        }catch (NullPointerException e){
+                            break;
+                        }
+                            int num = Integer.parseInt(name);
+                            if(player.equipNum(num)){
+                                break;}
+                        } catch (NumberFormatException e){
+
+                        }
+
+                    }
+
         }
         walkCount++;
         newRoom();
