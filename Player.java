@@ -9,25 +9,13 @@ import javax.swing.*;
 public class Player extends Character {
 
     //x and y pos of player
-    int walkCount;
-    private int xPos;
-    private int yPos;
-    private BufferedImage playerStill;
-    private BufferedImage playerWalk;
-    private BufferedImage anim;
+
     private boolean visible;
     private Inventory playerInventory;
 
     public Player() {
         Inventory playerInventory = new Inventory();
         this.playerInventory = playerInventory;
-        walkCount=1;
-        try{
-            playerStill= ImageIO.read(new File("knight l1.png"));
-            playerWalk= ImageIO.read(new File("knight l2.png"));
-        }
-        catch(IOException e){}
-        setAnim(getPlayerStill());
     }
 
     public void generateWeapon(int turnCount) {
@@ -146,25 +134,6 @@ public class Player extends Character {
         playerInventory.remove(item);
     }
     //getters and setters for player position
-    public int getyPos() {return yPos;}
-    public int getxPos() {return xPos;}
-    public void setxPos(int xPos) {this.xPos = xPos;}
-    public void setyPos(int yPos) {this.yPos = yPos;}
-    //getters for image and setter for animation image
 
-    public void setAnim(BufferedImage anim) {
-        this.anim = anim;
-    }
-    public BufferedImage getAnim() {return anim;}
 
-    public BufferedImage getPlayerWalk() {return playerWalk;}
-
-    public BufferedImage getPlayerStill() {return playerStill;}
-   //switches image of player
-    public void switchIm(){
-        if((walkCount%5)==0){
-            if(anim==playerStill){anim=playerWalk;}
-            else{anim=playerStill;}}
-        walkCount++;
-    }
 }

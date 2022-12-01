@@ -44,7 +44,7 @@ public class test implements Runnable{
         canvas.createBufferStrategy(2);
         bufferStrategy= canvas.getBufferStrategy();
         try{
-            image= ImageIO.read(new File("knight l2.png"));
+            image= ImageIO.read(new File("Sprites/knight l2.png"));
             image2=ImageIO.read(new File("knight l1.png"));
         }
         catch(IOException e){}

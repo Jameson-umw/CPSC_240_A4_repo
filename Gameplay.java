@@ -9,17 +9,36 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gameplay implements Runnable{
-    BufferedImage image;
-    BufferedImage image2;
-    BufferedImage anim;
-    int xPos=50;
-    int yPos=50;
-    int walkCount=1;
+    private int roomNum=1;
     private int turnCount;
     public Player player = new Player();
+    //number of times key is pressed
+    int walkCount=1;
+    //x and y position
+    private int xPos=25;
+    private int yPos=300;
+    //imgs
+    private BufferedImage door;
+    private BufferedImage image1;
+    private BufferedImage image2;
+    private BufferedImage anim;
+    private BufferedImage aRack;
+    private BufferedImage sRack;
+    //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
     public Gameplay(){
+        //uploading images
+        try{
+            image1= ImageIO.read(new File("Sprites/knight l1.png"));
+            image2= ImageIO.read(new File("Sprites/knight l2.png"));
+            door=ImageIO.read(new File("Sprites/door.png"));
+            aRack=ImageIO.read(new File("Sprites/armorRack.png"));
+            sRack=ImageIO.read(new File("Sprites/swordRack.png"));
+        }
+        catch(IOException e){}
+        anim=image1;
+        //setting up frame and panel
         frame=new JFrame("Final Project");
         JPanel panel=(JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(1000,650));
@@ -28,6 +47,7 @@ public class Gameplay implements Runnable{
         canvas.setBounds(0,0,1000,650);
         canvas.setIgnoreRepaint(true);
         panel.add(canvas);
+        //keylistener for moving
         canvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent event){
@@ -40,37 +60,11 @@ public class Gameplay implements Runnable{
         frame.setVisible(true);
         canvas.createBufferStrategy(2);
         bufferStrategy= canvas.getBufferStrategy();
-        try{
-            image= ImageIO.read(new File("knight l2.png"));
-            image2=ImageIO.read(new File("knight l1.png"));
-        }
-        catch(IOException e){}
-        anim=image;
+        //sets up turn count
         this.turnCount=1;
         GAMEPLAY();
     }
-   /* public void setUp(){
-        frame=new JFrame("Final Project");
-        JPanel panel=(JPanel) frame.getContentPane();
-        panel.setPreferredSize(new Dimension(1000,650));
-        panel.setLayout(null);
-        canvas=new Canvas();
-        canvas.setBounds(0,0,1000,650);
-        canvas.setIgnoreRepaint(true);
-        panel.add(canvas);
-        canvas.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent event){
-                moveIt(event);
-            }
-        });
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
-        canvas.createBufferStrategy(2);
-        bufferStrategy= canvas.getBufferStrategy();
-    }*/
+   //runs the program
     public void run(){
         while(running=true){
             Paint();
@@ -80,20 +74,26 @@ public class Gameplay implements Runnable{
             catch (InterruptedException e){}
         }
     }
+    //main method
     public static void main(String[] args) {
         Gameplay ex=new Gameplay();
         new Thread(ex).start();
     }
+    //paints objexts on screen (gets cleared and repainted when objects move)
     public void Paint(){
         Graphics2D g=(Graphics2D) bufferStrategy.getDrawGraphics();
         //clears thing on each repaint
-        g.clearRect(0,0,1000,600);
+        g.clearRect(0,0,1000,650);
         Paint(g);
         bufferStrategy.show();
-
     }
     protected void Paint(Graphics2D g) {
-        g.fillRect(xPos,yPos, 65,65);
+        g.drawImage(anim,xPos,yPos,null);
+        g.drawImage(door,943,300,null);
+        if(roomNum==1){
+            g.drawImage(aRack,500,150,null);
+            g.drawImage(sRack,500,450,null);
+        }
     }
     public int getTurnCount(){
         return turnCount;
@@ -114,7 +114,7 @@ public class Gameplay implements Runnable{
         switchIm();
         switch(evt.getKeyCode()){
             case KeyEvent.VK_DOWN:
-                if((yPos+5)>600){yPos=600;}
+                if((yPos+5)>600){yPos=586;}
                 else{yPos+=5;}
                 break;
             case KeyEvent.VK_UP:
@@ -126,18 +126,16 @@ public class Gameplay implements Runnable{
                 else{xPos-=5;}
                 break;
             case KeyEvent.VK_RIGHT:
-                if((xPos+5)>970){xPos=970;}
+                if((xPos+5)>970){xPos=936;}
                 else{xPos+=5;}
                 break;
-
         }
-    }
-    //switches image on every 5th keystroke
-    public void switchIm(){
-        if((walkCount%5)==0){
-            if(anim==image){anim=image2;}
-            else{anim=image;}}
         walkCount++;
     }
-
+    //switches animation image after 5 keystrokes
+    public void switchIm(){
+        if((walkCount%5)==0){
+            if(anim.equals(image1)){anim=image2;}
+            else{anim=image1;}}
+    }
 }

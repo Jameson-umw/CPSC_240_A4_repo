@@ -31,7 +31,12 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="NonCodeFiles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Gameplay">
     <configuration name="Animation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TeachersAnimationExample.Animation" />
       <module name="CPSC_240_A4_repo" />
@@ -45,8 +50,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Gameplay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Gameplay" />
+      <module name="CPSC_240_A4_repo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="CPSC_240_A4_repo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Gameplay" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Animation" />
       </list>
     </recent_temporary>
@@ -88,14 +109,64 @@
       <option name="project" value="LOCAL" />
       <updated>1669847635244</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding frame stuff">
+      <created>1669851390200</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669851390200</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updating player image info">
+      <created>1669853206830</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669853206830</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added information key to player movement">
+      <created>1669855316648</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669855316648</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Please help">
+      <created>1669858582935</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669858582935</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Please help">
+      <created>1669858867555</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669858867555</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added DIA starter" />
     <MESSAGE value="Added default values" />
     <MESSAGE value="Added information about player sprite position, image and size." />
     <MESSAGE value="Added spot image for player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added spot image for player" />
+    <MESSAGE value="Adding frame stuff" />
+    <MESSAGE value="Updating player image info" />
+    <MESSAGE value="Added information key to player movement" />
+    <MESSAGE value="Please help" />
+    <option name="LAST_COMMIT_MESSAGE" value="Please help" />
   </component>
 </project>
