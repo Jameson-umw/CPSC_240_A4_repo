@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Gameplay implements Runnable{
     private int slimeCount=0;
     private int roomNum=1;
-    private int turnCount=1;
+    private int turnCount;
     private boolean chestTouch=false;
     private boolean slimeTouch=false;
     private boolean obtainedWeapon=false;
@@ -29,6 +29,8 @@ public class Gameplay implements Runnable{
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
+    private BufferedImage congrats;
+    private int congratsCount;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
@@ -44,6 +46,7 @@ public class Gameplay implements Runnable{
             sRack=ImageIO.read(new File("Sprites/swordRack.png"));
             slime=ImageIO.read(new File("Sprites/slime.png"));
             chest=ImageIO.read(new File("Sprites/chest.png"));
+            congrats=ImageIO.read(new File("Sprites/Congrats.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -71,7 +74,7 @@ public class Gameplay implements Runnable{
         bufferStrategy= canvas.getBufferStrategy();
         //sets up turn count
         this.turnCount=1;
-        setTurnCount(player.fileMaker());
+        GAMEPLAY();
     }
    //runs the program
     public void run(){
@@ -109,18 +112,30 @@ public class Gameplay implements Runnable{
             g.drawImage(slime,500,300,null);
         }}
         if(roomNum==3){
-            g.drawImage(door3,943,300,null);
-            g.drawImage(chest,500,300,null);
-        }
+            if(chestTouch&&congratsCount<50){
+                g.drawImage(congrats,0,0,null);
+                congratsCount++;
+            }
+            else {
+                g.drawImage(door3, 943, 300, null);
+                g.drawImage(chest, 500, 300, null);
+            }
+            }
     }
     public int getTurnCount(){
         return turnCount;
     }
 
-    public void setTurnCount(int turnCount){
+    public void setTurnCount(){
         this.turnCount=turnCount;
     }
 
+    public void GAMEPLAY(){
+        player.fileMaker();
+
+
+
+    }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){
         switchIm();
@@ -160,7 +175,6 @@ public class Gameplay implements Runnable{
             if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
                 chestTouch=true;
                 player.setHealth(100);
-
             }
         }
     }
@@ -170,8 +184,7 @@ public class Gameplay implements Runnable{
                 slimeCount++;
                 if(!slimeTouch){
                     slimeTouch=true;
-                Combat combat = new Combat(turnCount, player, enemy);
-                Boolean win = combat.getWin();
+                new Combat(turnCount, player, enemy);
             }}
         }
     }
