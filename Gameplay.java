@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -9,14 +11,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class Gameplay implements Runnable{
-    private int slimeCount=0;
     private int roomNum=1;
     private int turnCount;
     private boolean chestTouch=false;
     private boolean slimeTouch=false;
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
-    private boolean roundWon=true;
     public Player player = new Player();
     public Enemy enemy = new Enemy(turnCount);
     //number of times key is pressed
@@ -25,17 +25,12 @@ public class Gameplay implements Runnable{
     private int xPos=25;
     private int yPos=300;
     //imgs
-    private BufferedImage nextImg;
-    private int roundCount;
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
     private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
-    private BufferedImage congrats;
-    private BufferedImage lost;
-    private int lostCount=0;
-    private int congratsCount;
+    private JPopupMenu pm;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
@@ -51,9 +46,6 @@ public class Gameplay implements Runnable{
             sRack=ImageIO.read(new File("Sprites/swordRack.png"));
             slime=ImageIO.read(new File("Sprites/slime.png"));
             chest=ImageIO.read(new File("Sprites/chest.png"));
-            congrats=ImageIO.read(new File("Sprites/Congrats.png"));
-            lost=ImageIO.read((new File("Sprites/You Died.png")));
-            nextImg=ImageIO.read(new File("Sprites/Next Turn.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -62,6 +54,10 @@ public class Gameplay implements Runnable{
         JPanel panel=(JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(1000,650));
         panel.setLayout(null);
+        //extra stuff so the inventory works, shouldn't affect anything else
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+
         canvas=new Canvas();
         canvas.setBounds(0,0,1000,650);
         canvas.setIgnoreRepaint(true);
@@ -109,50 +105,17 @@ public class Gameplay implements Runnable{
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
         if(roomNum==1){
-            lostCount=0;
             g.drawImage(aRack,500,150,null);
             g.drawImage(sRack,500,450,null);
             g.drawImage(door1,943,300,null);
         }
         if(roomNum==2){
-            if(slimeTouch&&!roundWon&&lostCount<50){
-                g.drawImage(lost,0,0,null);
-                lostCount++;
-            }
-            else{
-                g.drawImage(door2,943,300,null);
-                if(slimeCount<10){
-                    g.drawImage(slime,500,300,null);
-                }
-            }
-            if(lostCount>=50) {
-                frame.dispose();
-            }
+            g.drawImage(door2,943,300,null);
+            g.drawImage(slime,500,300,null);
         }
         if(roomNum==3){
-            if(chestTouch&&congratsCount<50){
-                g.drawImage(congrats,0,0,null);
-                congratsCount++;
-            }
-            else {
-                g.drawImage(door3, 943, 300, null);
-                g.drawImage(chest, 500, 300, null);
-            }
-            }
-        if(roomNum==4){
-            g.drawImage(nextImg,0,0,null);
-            roundCount++;
-            if(roundCount>70){roomNum=1;
-                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if(result == JOptionPane.YES_OPTION){
-                    player.saveGame(turnCount);
-                    System.out.println("save");
-                }else if (result == JOptionPane.NO_OPTION){
-                    System.out.println("not saved");
-                }
-            }
+            g.drawImage(door3,943,300,null);
+            g.drawImage(chest,500,300,null);
         }
     }
     public int getTurnCount(){
@@ -165,6 +128,8 @@ public class Gameplay implements Runnable{
 
     public void GAMEPLAY(){
         player.fileMaker();
+
+
     }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){
@@ -186,6 +151,9 @@ public class Gameplay implements Runnable{
                 if((xPos+5)>970){xPos=936;}
                 else{xPos+=5;}
                 break;
+            case KeyEvent.VK_I:
+                openInventory(evt);
+                break;
         }
         walkCount++;
         newRoom();
@@ -204,19 +172,14 @@ public class Gameplay implements Runnable{
         if(roomNum==3&&!chestTouch){
             if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
                 chestTouch=true;
-                player.setHealth(100);
             }
         }
     }
     public void touchEnemy(){
-        if(roomNum==2){
+        if(roomNum==2&&!slimeTouch){
             if(485<=xPos && 285<=yPos && 580>=xPos && 380>=yPos){
-                slimeCount++;
-                if(!slimeTouch){
-                    slimeTouch=true;
-                    Combat combat=new Combat(turnCount, player, enemy);
-                    roundWon= combat.getWin();
-                }
+                slimeTouch=true;
+                new Combat(turnCount, player, enemy);
             }
         }
     }
@@ -236,6 +199,41 @@ public class Gameplay implements Runnable{
             }
         }
     }
+
+    //opens inventory pop-up when user presses I
+    public void openInventory(KeyEvent event){
+        pm=new JPopupMenu("Testing");
+        //add three buttons to the popup: check, equip, drop
+        JMenuItem check=new JMenuItem("Check Inventory");
+        JMenuItem equip=new JMenuItem("Equip an item");
+        JMenuItem drop=new JMenuItem("Drop an item");
+        pm.add(check);
+        pm.add(equip);
+        pm.add(drop);
+
+        //actionListener to each item
+        check.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //for each item in the inventory, print it as a button
+
+            }
+        });
+        equip.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //for each item in the inventory, print it as a button. When that button is pressed, equip that item
+            }
+        });
+        drop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //for each item in the inventory, print it as a button. When that button is pressed, remove it and the item from the inventory
+            }
+        });
+        pm.show(frame,200,200);
+    }
+
     public void newRoom(){
         if((925<=xPos)&&(280<=yPos)&&(yPos<=420)){
             if(roomNum<3){
@@ -243,7 +241,6 @@ public class Gameplay implements Runnable{
                 yPos=300;
                 roomNum++;}
             else{
-                roomNum=4;
                 chestTouch=false;
                 slimeTouch=false;
                 enemy=new Enemy(turnCount);
@@ -251,10 +248,17 @@ public class Gameplay implements Runnable{
                 obtainedWeapon=false;
                 xPos=25;
                 yPos=300;
-                slimeCount=0;
-                congratsCount=0;
+                roomNum=1;
                 turnCount++;
-
+                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if(result == JOptionPane.YES_OPTION){
+                    player.saveGame(turnCount);
+                    System.out.println("save");
+                }else if (result == JOptionPane.NO_OPTION){
+                    System.out.println("not saved");
+                }
             }
 
         }
