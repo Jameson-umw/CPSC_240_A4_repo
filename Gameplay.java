@@ -142,6 +142,7 @@ public class Gameplay implements Runnable{
                 break;
         }
         walkCount++;
+        newRoom();
     }
     //switches animation image after 5 keystrokes
     public void switchIm(){
@@ -150,6 +151,17 @@ public class Gameplay implements Runnable{
             else{anim=image1;}}
     }
     public void newRoom(){
-
+        if((925<=xPos)&&(280<=yPos)&&(yPos<=420)){
+            if(roomNum<3){
+                xPos=25;
+                yPos=300;
+                roomNum++;}
+            else{
+                xPos=25;
+                yPos=300;
+                roomNum=1;
+                turnCount++;
+            }
+        }
     }
 }
