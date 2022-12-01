@@ -3,6 +3,7 @@ public class Combat {
     private int wDurability = 0;
     private int toughness = 0;
     private int strength = 0;
+    private boolean winner = false;
 
     // combat algorithm
     public Combat(int turnCount, Player player, Enemy enemy){
@@ -19,9 +20,14 @@ public class Combat {
                 player.fileDeleter();
                 break;
             } else if (enemy.getHealth()<=0){
+                winner=true;
                 break;
             }
         }
+    }
+
+    public boolean getWin(){
+        return winner;
     }
 
     //Player combat method

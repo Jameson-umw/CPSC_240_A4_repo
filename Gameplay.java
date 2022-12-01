@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Gameplay implements Runnable{
     private int slimeCount=0;
     private int roomNum=1;
-    private int turnCount;
+    private int turnCount=1;
     private boolean chestTouch=false;
     private boolean slimeTouch=false;
     private boolean obtainedWeapon=false;
@@ -170,7 +170,8 @@ public class Gameplay implements Runnable{
                 slimeCount++;
                 if(!slimeTouch){
                     slimeTouch=true;
-                new Combat(turnCount, player, enemy);
+                Combat combat = new Combat(turnCount, player, enemy);
+                Boolean win = combat.getWin();
             }}
         }
     }
