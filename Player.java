@@ -8,13 +8,13 @@ import javax.swing.*;
 
 public class Player extends Character {
 
-    public int xPos;
-    public int yPos;
-    public int width;
-    public int height;
-    public BufferedImage playerStill;
-    public BufferedImage playerWalk;
-    public boolean visible;
+    //x and y pos of player
+    private int xPos;
+    private int yPos;
+    private BufferedImage playerStill;
+    private BufferedImage playerWalk;
+    private BufferedImage anim;
+    private boolean visible;
     private Inventory playerInventory;
 
     public Player() {
@@ -28,6 +28,7 @@ public class Player extends Character {
             playerWalk= ImageIO.read(new File(""));
         }
         catch(IOException e){}
+        anim=playerStill;
     }
 
     public void generateWeapon(int turnCount) {
@@ -128,5 +129,19 @@ public class Player extends Character {
     public void removeItem(Item item){
         playerInventory.remove(item);
     }
+    //getters and setters for player position
+    public int getyPos() {return yPos;}
+    public int getxPos() {return xPos;}
+    public void setxPos(int xPos) {this.xPos = xPos;}
+    public void setyPos(int yPos) {this.yPos = yPos;}
+    //getters for image and setter for animation image
 
+    public void setAnim(BufferedImage anim) {
+        this.anim = anim;
+    }
+    public BufferedImage getAnim() {return anim;}
+
+    public BufferedImage getPlayerWalk() {return playerWalk;}
+
+    public BufferedImage getPlayerStill() {return playerStill;}
 }
