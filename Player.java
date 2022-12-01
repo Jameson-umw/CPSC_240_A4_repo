@@ -10,7 +10,6 @@ import javax.swing.*;
 public class Player extends Character {
 
     //x and y pos of player
-
     private boolean visible;
     private Inventory playerInventory;
 
@@ -19,8 +18,6 @@ public class Player extends Character {
         this.playerInventory = playerInventory;
     }
 
-    //TODO call this when we overlap with the weapon stand
-    // Makes a random weapon
     public void generateWeapon(int turnCount, boolean obtainedWeapon) {
         Weapon weapon = weaponlist(turnCount);
         //reworked if statement to fit notif method
@@ -37,8 +34,6 @@ public class Player extends Character {
         playerInventory.setInventoryWeight();
     }
 
-    //TODO call this when we overlap with the armor stand
-    // Makes a random armor piece
     public void generateArmor(int turnCount, boolean obtainedArmor) {
         Armor armor = armorList(turnCount);
         //reworked if statement to work with notif method
@@ -142,13 +137,16 @@ public class Player extends Character {
         return 0;
     }
 
+    public boolean dropStuff(int num){
+        return playerInventory.remove(num);
+    }
+
     //Deletes a file when a charecter dies or if the file has an error and detects null pointer exceptions. if a null pointer exception is called, it
     //effectivly removes the bad file and starts again.
     public void fileDeleter(){
         File tmpFile = new File("./SaveFile/save.txt");
         boolean exists = tmpFile.exists();
         if(exists){
-            //@TODO See if removing this from the if block doesnt mess with stuff
             if(tmpFile.delete()){
             }
         }
@@ -170,7 +168,6 @@ public class Player extends Character {
         setPower(5+turnCount/5);
     }
 
-    //TODO call to get the inventory of the player. Display in a menu?
     public void printInventory() {
         playerInventory.print();
     }

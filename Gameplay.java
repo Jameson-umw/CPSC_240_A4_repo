@@ -187,25 +187,6 @@ public class Gameplay implements Runnable{
             case KeyEvent.VK_I:
                 openInventory(evt);
                 break;
-//                    while(true) {
-//                        player.printInventory();
-//                        try{
-//                            String name = "";
-//                        try {
-//                            name = JOptionPane.showInputDialog(frame,
-//                                    "What number item do you wish to equip", null);
-//                            if(name.equals(null)){break;}
-//                        }catch (NullPointerException e){
-//                            break;
-//                        }
-//                            int num = Integer.parseInt(name);
-//                            if(player.equipNum(num)){
-//                                break;}
-//                        } catch (NumberFormatException e){
-//
-//                        }
-//
-//                    }
 
         }
         walkCount++;
@@ -268,6 +249,7 @@ public class Gameplay implements Runnable{
         pm.add(equip);
         pm.add(drop);
 
+        //TODO remove
         Inventory inventory=new Inventory();
         JPopupMenu popupMenu=new JPopupMenu();
         //actionListener to each item
@@ -279,8 +261,8 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-                        System.out.println(i+":"+item.itemName);
-                        i++;
+                        //System.out.println(i+":"+item.itemName);
+                        //i++;
 
                         menuItem=new JMenuItem(item.itemName);
                         popupMenu.add(menuItem);
@@ -296,13 +278,45 @@ public class Gameplay implements Runnable{
         equip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //for each item in the inventory, print it as a button. When that button is pressed, equip that item
+                while(true) {
+                    player.printInventory();
+                    try{
+                        String name = "";
+                        try {
+                            name = JOptionPane.showInputDialog(frame,
+                                    "What number item do you wish to equip", null);
+                            if(name.equals(null)){break;}
+                        }catch (NullPointerException error){
+                            break;
+                        }
+                        int num = Integer.parseInt(name);
+                        if(player.equipNum(num)){
+                            break;}
+                    } catch (NumberFormatException error){
+                    }
+                }
             }
         });
         drop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //for each item in the inventory, print it as a button. When that button is pressed, remove it and the item from the inventory
+                while(true) {
+                    player.printInventory();
+                    try{
+                        String name = "";
+                        try {
+                            name = JOptionPane.showInputDialog(frame,
+                                    "What number item do you wish to drop", null);
+                            if(name.equals(null)){break;}
+                        }catch (NullPointerException error){
+                            break;
+                        }
+                        int num = Integer.parseInt(name);
+                        if(player.dropStuff(num)){
+                            break;}
+                    } catch (NumberFormatException error){
+                    }
+                }
             }
         });
         pm.show(frame,200,200);

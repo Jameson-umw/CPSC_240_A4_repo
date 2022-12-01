@@ -53,7 +53,7 @@ public class Combat {
             aDurability=0;
         }
         if ((strength + player.getPower()) >= (toughness + enemy.getDefense())) {
-            enemy.setHealth(enemy.getHealth() - strength + toughness + enemy.getDefense() - player.getPower());
+            enemy.setHealth(enemy.getHealth() - strength + toughness + enemy.getDefense() - 2*player.getPower());
         } else {
             enemy.setHealth(enemy.getHealth() - player.getPower());
         }
@@ -97,7 +97,7 @@ public class Combat {
             aDurability=0;
         }
         if ((strength + player.getPower()) >= (toughness + enemy.getDefense())) {
-            enemy.setHealth(enemy.getHealth() - strength + toughness + enemy.getDefense() - player.getPower());
+            enemy.setHealth(enemy.getHealth() - strength + toughness + enemy.getDefense() - 2*player.getPower());
         } else {
             enemy.setHealth(enemy.getHealth() - player.getPower());
         }
