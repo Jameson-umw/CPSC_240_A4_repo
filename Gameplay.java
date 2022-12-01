@@ -119,12 +119,6 @@ public class Gameplay implements Runnable{
         this.turnCount=turnCount;
     }
 
-    public void resetRoom(){
-        enemy=new Enemy(turnCount);
-        obtainedWeapon=false;
-        obtainedArmor=false;
-    }
-
     public void GAMEPLAY(){
         player.fileMaker();
 
@@ -175,12 +169,14 @@ public class Gameplay implements Runnable{
         if(roomNum==2&&!slimeTouch){
             if(485<=xPos && 285<=yPos && 580>=xPos && 380>=yPos){
                 slimeTouch=true;
+                new Combat(turnCount, player, enemy);
             }
         }
     }
     public void touchArmorRack(){
         if(roomNum==1&&!obtainedArmor){
             if(485<=xPos && 610>=xPos && 135<=yPos && 265>=yPos){
+                player.generateArmor(turnCount,obtainedArmor);
                 obtainedArmor=true;
             }
         }
@@ -188,6 +184,7 @@ public class Gameplay implements Runnable{
     public void touchWeaponRack(){
         if(roomNum==1&&!obtainedWeapon){
             if(485<=xPos && 615>=xPos && 435<=yPos && 565>=yPos){
+                player.generateWeapon(turnCount,obtainedWeapon);
                 obtainedWeapon=true;
             }
         }
@@ -201,6 +198,7 @@ public class Gameplay implements Runnable{
             else{
                 chestTouch=false;
                 slimeTouch=false;
+                enemy=new Enemy(turnCount);
                 obtainedArmor=false;
                 obtainedWeapon=false;
                 xPos=25;
