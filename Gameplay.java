@@ -21,12 +21,11 @@ public class Gameplay implements Runnable{
     private int xPos=25;
     private int yPos=300;
     //imgs
-    private BufferedImage door;
-    private BufferedImage image1;
-    private BufferedImage image2;
-    private BufferedImage anim;
-    private BufferedImage aRack;
-    private BufferedImage sRack;
+    private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
+    private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
+    private BufferedImage aRack; private BufferedImage sRack;
+    private BufferedImage slime;
+    private BufferedImage chest;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
@@ -35,9 +34,13 @@ public class Gameplay implements Runnable{
         try{
             image1= ImageIO.read(new File("Sprites/knight l1.png"));
             image2= ImageIO.read(new File("Sprites/knight l2.png"));
-            door=ImageIO.read(new File("Sprites/door.png"));
+            door1=ImageIO.read(new File("Sprites/door.png"));
+            door2=ImageIO.read(new File("Sprites/door.png"));
+            door3=ImageIO.read(new File("Sprites/door.png"));
             aRack=ImageIO.read(new File("Sprites/armorRack.png"));
             sRack=ImageIO.read(new File("Sprites/swordRack.png"));
+            slime=ImageIO.read(new File("Sprites/slime.png"));
+            chest=ImageIO.read(new File("Sprites/chest.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -92,10 +95,18 @@ public class Gameplay implements Runnable{
     }
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
-        g.drawImage(door,943,300,null);
         if(roomNum==1){
             g.drawImage(aRack,500,150,null);
             g.drawImage(sRack,500,450,null);
+            g.drawImage(door1,943,300,null);
+        }
+        if(roomNum==2){
+            g.drawImage(door2,943,300,null);
+            g.drawImage(slime,500,300,null);
+        }
+        if(roomNum==3){
+            g.drawImage(door3,943,300,null);
+            g.drawImage(chest,500,300,null);
         }
     }
     public int getTurnCount(){
@@ -141,11 +152,26 @@ public class Gameplay implements Runnable{
                 break;
         }
         walkCount++;
+        newRoom();
     }
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
             if(anim.equals(image1)){anim=image2;}
             else{anim=image1;}}
+    }
+    public void newRoom(){
+        if((925<=xPos)&&(280<=yPos)&&(yPos<=420)){
+            if(roomNum<3){
+                xPos=25;
+                yPos=300;
+                roomNum++;}
+            else{
+                xPos=25;
+                yPos=300;
+                roomNum=1;
+                turnCount++;
+            }
+        }
     }
 }
