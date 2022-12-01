@@ -206,7 +206,22 @@ public class Gameplay implements Runnable{
                 yPos=300;
                 roomNum=1;
                 turnCount++;
+                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if(result == JOptionPane.YES_OPTION){
+                    player.saveGame(turnCount);
+                    System.out.println("save");
+                }else if (result == JOptionPane.NO_OPTION){
+                    System.out.println("not saved");
+                }
             }
+
         }
     }
+
+    public JFrame sendFrametoNotif(){
+        return frame;
+    }
+
 }
