@@ -123,6 +123,7 @@ public class Gameplay implements Runnable{
         player.fileMaker();
 
 
+
     }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){

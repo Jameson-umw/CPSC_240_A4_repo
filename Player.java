@@ -46,7 +46,7 @@ public class Player extends Character {
 
             // This can only happen if a game is new
             if (file.createNewFile()) {
-                System.out.println("Built");
+
             }
             // This can only happen if a game is old
             else {

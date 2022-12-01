@@ -24,13 +24,23 @@ public class Inventory {
     public void equipItem(Item item){
         if(!item.getEquipped()) {
             if (item.getItemType().equals("Weapon")) {
-                equippedWeapon.changeEquip();
-                item.changeEquip();
-                equippedWeapon = (Weapon) item;
+                try {
+                    equippedWeapon.changeEquip();
+                    item.changeEquip();
+                    equippedWeapon = (Weapon) item;
+                }catch (NullPointerException e){
+                    item.changeEquip();
+                    equippedWeapon = (Weapon) item;
+                }
             } else if (item.getItemType().equals("Armor")) {
-                equippedArmor.changeEquip();
-                item.changeEquip();
-                equippedArmor = (Armor) item;
+                try {
+                    equippedArmor.changeEquip();
+                    item.changeEquip();
+                    equippedArmor = (Armor) item;
+                }catch (NullPointerException e){
+                    item.changeEquip();
+                    equippedArmor = (Armor) item;
+                }
             }
         }
     }

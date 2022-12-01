@@ -16,8 +16,10 @@ public class Enemy extends Character{
         setPower(1+turnCount/4);
         Weapon weapon = weaponlist(turnCount);
         enemyInventory.addItem(weapon);
+        enemyInventory.equipItem(weapon);
         Armor armor = armorList(turnCount);
         enemyInventory.addItem(armor);
+        enemyInventory.equipItem(armor);
     }
 
     //inheritence methods

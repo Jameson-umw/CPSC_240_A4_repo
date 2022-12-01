@@ -20,7 +20,6 @@ public abstract class Item {
         this.durability=durability;
     }
 
-
     // getter methods
     public String getItemName(){
         return itemName;
