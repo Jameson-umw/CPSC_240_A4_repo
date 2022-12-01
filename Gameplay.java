@@ -43,6 +43,8 @@ public class Gameplay implements Runnable{
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
 
+
+    //TODO: Add a JLabel to prompt user to click to start game, jlabel then clears when done
     public Gameplay(){
         //uploading images
         try{
@@ -305,9 +307,9 @@ public class Gameplay implements Runnable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JMenuItem menuItem;
-                int i=1;
                 //for each item in the inventory, print it as a button. When that button is pressed, equip that item
                 if(player.getPlayerInventory().size()>0){
+                    int i=1;
                     for (Item item:player.getPlayerInventory()) {
                         //for checking
                         //System.out.println(i+":"+item.itemName);
@@ -317,13 +319,29 @@ public class Gameplay implements Runnable{
                         popupMenu.add(menuItem);
 
                         menuItem.addActionListener(new ActionListener() {
+                            //when item is clicked, equip it
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                //idk why it accepts an item and not a number, but it works
                                 inventory.equipItem(item);
+                                //it doesn't seem to actually equip, so checking
+                                if(item.equals(inventory.getEquippedArmor())){
+                                    System.out.println("equipped armor");
+                                }else if(item.equals(inventory.getEquippedWeapon())){
+                                    System.out.println("equipped weapon");
+                                }else{
+                                    System.out.println("Didn't actually equip");
+                                }
                                 JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
                             }
                         });
+                        //it doesn't seem to actually equip, so checking
+                        if(item.equals(inventory.getEquippedArmor())){
+                            System.out.println("equipped armor");
+                        }else if(item.equals(inventory.getEquippedWeapon())){
+                            System.out.println("equipped weapon");
+                        }else{
+                            System.out.println("Didn't actually equip");
+                        }
                     }
                     popupMenu.show(frame,300,300);
                 } else {
