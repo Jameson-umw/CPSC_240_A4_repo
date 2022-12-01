@@ -36,10 +36,10 @@ public class Player extends Character {
         playerInventory.print();
     }
 
-    public void fileReader() {
+    public void fileMaker() {
         try {
-            String filename = "save.txt";
-            File file = new File("./SaveFile/", filename);
+            String filename = ("./SaveFile/save.txt");
+            File file = new File(filename);
 
             // This can only happen if a game is new
             if (file.createNewFile()) {
@@ -51,58 +51,75 @@ public class Player extends Character {
             }
             //@TODO Adjust IOException based on gameplay
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
     public int readSaveGame(String filename) {
         try {
             BufferedReader fileReader = new BufferedReader(new FileReader(filename));
-            String line = fileReader.readLine();
-            int turncount = Integer.parseInt(line);
-            line = fileReader.readLine();
-            while (line != null) {
-                int weight = Integer.parseInt(line);
-                line = fileReader.readLine();
-                String WeaponName = line;
-                line = fileReader.readLine();
-                int durability = Integer.parseInt(line);
-                line = fileReader.readLine();
-                int value = Integer.parseInt(line);
-                line = fileReader.readLine();
-                boolean equipped = Boolean.parseBoolean(line);
-                line = fileReader.readLine();
-                String itemType = line;
-                line = fileReader.readLine();
-                line = fileReader.readLine();
-                if (itemType.equals("Weapon")) {
-                    Weapon weapon = new Weapon(weight, WeaponName, durability, value, equipped);
-                    playerInventory.addItem(weapon);
-                } else {
-                    Armor armor = new Armor(weight, WeaponName, durability, value, equipped);
-                    playerInventory.addItem(armor);
+            try {
+                String line = fileReader.readLine();
+                if (!line.equals("")) {
+                    int turncount = Integer.parseInt(line);
+                    line = fileReader.readLine();
+                    while (line != null) {
+                        int weight = Integer.parseInt(line);
+                        line = fileReader.readLine();
+                        String WeaponName = line;
+                        line = fileReader.readLine();
+                        int durability = Integer.parseInt(line);
+                        line = fileReader.readLine();
+                        int value = Integer.parseInt(line);
+                        line = fileReader.readLine();
+                        boolean equipped = Boolean.parseBoolean(line);
+                        line = fileReader.readLine();
+                        String itemType = line;
+                        line = fileReader.readLine();
+                        line = fileReader.readLine();
+                        if (itemType.equals("Weapon")) {
+                            Weapon weapon = new Weapon(weight, WeaponName, durability, value, equipped);
+                            playerInventory.addItem(weapon);
+                        } else {
+                            Armor armor = new Armor(weight, WeaponName, durability, value, equipped);
+                            playerInventory.addItem(armor);
+                        }
+                    }
+                    fileReader.close();
+                    return turncount;
                 }
+            }catch (NullPointerException e){
+                fileReader.close();
+                fileDeleter();
+                fileMaker();
             }
-            return turncount;
         } catch (FileNotFoundException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         return 0;
     }
 
+    public void fileDeleter(){
+        File tmpFile = new File("./SaveFile/save.txt");
+        boolean exists = tmpFile.exists();
+        if(exists){
+            //@TODO See if removing this from the if block doesnt mess with stuff
+            if(tmpFile.delete()){
+            }
+        }
+    }
 
     public void saveGame(int turnCount){
         playerInventory.saveState(turnCount);
     }
 
     //@TODO need the location of turn count and so that i can fix the rest of the code
-    public void updatePlayer(){
-        int turnCount=0;
+    public void updatePlayer(int turnCount){
         setHealth(100);
         setDefense(1+turnCount/5);
-        setPower(1+turnCount/5);
+        setPower(3+turnCount/5);
     }
 
     public Weapon getEWeapon(){

@@ -1,7 +1,8 @@
 public class Combat {
 
-    public Combat(Player player, Enemy enemy){
-        player.updatePlayer();
+    //@TODO Call this in gameplay
+    public Combat(int turnCount, Player player, Enemy enemy){
+        player.updatePlayer(turnCount);
         while(player.getHealth() >0 || enemy.getHealth()>0){
             // player go first
             playerCombat(player,enemy);
