@@ -144,7 +144,56 @@
       <option name="project" value="LOCAL" />
       <updated>1669858867555</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Getting things set up">
+      <created>1669862418566</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669862418566</updated>
+    </task>
+    <task id="LOCAL-00011" summary="YEAAAAAAH">
+      <created>1669864679550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669864679550</updated>
+    </task>
+    <task id="LOCAL-00012" summary="adding more images">
+      <created>1669864908860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669864908860</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added chest and items to rooms">
+      <created>1669865993113</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669865993113</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Room change mechanic">
+      <created>1669866999062</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669866999062</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added item touch mechanic">
+      <created>1669869504885</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669869504885</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Removed items">
+      <created>1669870029554</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669870029554</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -167,6 +216,13 @@
     <MESSAGE value="Updating player image info" />
     <MESSAGE value="Added information key to player movement" />
     <MESSAGE value="Please help" />
-    <option name="LAST_COMMIT_MESSAGE" value="Please help" />
+    <MESSAGE value="Getting things set up" />
+    <MESSAGE value="YEAAAAAAH" />
+    <MESSAGE value="adding more images" />
+    <MESSAGE value="Added chest and items to rooms" />
+    <MESSAGE value="Room change mechanic" />
+    <MESSAGE value="Added item touch mechanic" />
+    <MESSAGE value="Removed items" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed items" />
   </component>
 </project>
