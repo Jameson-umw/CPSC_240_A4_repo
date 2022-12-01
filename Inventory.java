@@ -22,7 +22,7 @@ public class Inventory {
     // Changes the equipped status of armor and weapons
     // May fail if there is no longer an item equipped/ at the start when a player has no weapon
     public void equipItem(Item item){
-        if(item.getEquipped()==false) {
+        if(!item.getEquipped()) {
             if (item.getItemType().equals("Weapon")) {
                 equippedWeapon.changeEquip();
                 item.changeEquip();
@@ -38,7 +38,7 @@ public class Inventory {
     // Changes equip status of a weapon or armor to false
     // can likely remove the first if statement, it is more or less a failsafe for performance should the code attempt to unequip a healing item
     public void unequipItem(Item item) {
-        if (item.getEquipped() == true) {
+        if (item.getEquipped()) {
             if (item==equippedWeapon) {
                 item.changeEquip();
                 equippedWeapon=null;
@@ -54,6 +54,7 @@ public class Inventory {
 
     }
 
+    // updates the inventory weight by looping through all the items
     public void setInventoryWeight(){
         inventoryWeight=0;
         for(Item item: items){
@@ -66,6 +67,7 @@ public class Inventory {
         items.add(item);
     }
 
+    // Removes an item from the inventory, and unequips the item should it be equipped
     public void remove(Item item){
         if(item.equals(equippedWeapon) || item.equals(equippedArmor)){
             unequipItem(item);
@@ -73,6 +75,7 @@ public class Inventory {
         items.remove(item);
     }
 
+    // saveState is the method that saves the game. We dont call this method, however. Instead, call player.saveGame
     public void saveState(int turnCount){
         try{
             new FileOutputStream("./SaveFile/save.txt", false).close();
@@ -102,13 +105,11 @@ public class Inventory {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public int getInventoryWeight(){
         return inventoryWeight;
     }
-
     public Weapon getEquippedWeapon(){
         return equippedWeapon;
     }

@@ -19,6 +19,8 @@ public class Combat {
             }
         }
     }
+
+    //Player combat method
     public void playerCombat(Player player, Enemy enemy){
         if((player.getEWeapon().getStrength()+player.getPower())>=(enemy.getEArmor().getToughness() + enemy.getDefense())){
             enemy.setHealth(enemy.getHealth()-player.getEWeapon().getStrength()+enemy.getEArmor().getToughness()+enemy.getDefense()-player.getPower());
@@ -40,6 +42,7 @@ public class Combat {
         }
     }
 
+    // enemy combat method
     public void enemyCombat(Player enemy, Enemy player){
         if(player.getEWeapon().getStrength()>=(enemy.getEArmor().getToughness() + enemy.getDefense())){
             enemy.setHealth(enemy.getHealth()-player.getEWeapon().getStrength()+enemy.getEArmor().getToughness()+enemy.getDefense());

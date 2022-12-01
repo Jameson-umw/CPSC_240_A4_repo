@@ -19,25 +19,26 @@ public class Player extends Character {
     }
 
     //TODO call this when we overlap with the weapon stand
+    // Makes a random weapon
     public void generateWeapon(int turnCount, boolean obtainedWeapon) {
         Weapon weapon = weaponlist(turnCount);
         if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedWeapon) {
             playerInventory.addItem(weapon);
         }
+        playerInventory.setInventoryWeight();
     }
 
     //TODO call this when we overlap with the armor stand
+    // Makes a random armor piece
     public void generateArmor(int turnCount, boolean obtainedArmor) {
         Armor armor = armorList(turnCount);
         if (playerInventory.getInventoryWeight() < maxInventoryWeight && !obtainedArmor) {
             playerInventory.addItem(armor);
         }
+        playerInventory.setInventoryWeight();
     }
 
-    public void printInventory() {
-        playerInventory.print();
-    }
-
+    // Checks to see if there is a previous save. If there is not, it builds a file. if it is not, it calls readSaveGame
     public void fileMaker() {
         try {
             String filename = ("./SaveFile/save.txt");
@@ -51,12 +52,13 @@ public class Player extends Character {
             else {
                 readSaveGame(filename);
             }
-            //@TODO Adjust IOException based on gameplay
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Method that reads in file. Turns the save data into the previous weapons and armor of a previous save. Counts turnCount, as its the most important
+    // Variable in a lot of methods
     public int readSaveGame(String filename) {
         try {
             BufferedReader fileReader = new BufferedReader(new FileReader(filename));
@@ -103,6 +105,8 @@ public class Player extends Character {
         return 0;
     }
 
+    //Deletes a file when a charecter dies or if the file has an error and detects null pointer exceptions. if a null pointer exception is called, it
+    //effectivly removes the bad file and starts again.
     public void fileDeleter(){
         File tmpFile = new File("./SaveFile/save.txt");
         boolean exists = tmpFile.exists();
@@ -113,29 +117,31 @@ public class Player extends Character {
         }
     }
 
+    //Call this when we save the game
     public void saveGame(int turnCount){
         playerInventory.saveState(turnCount);
     }
 
-    //@TODO need the location of turn count and so that i can fix the rest of the code
+    //Updates health, strength, and power of the player
     public void updatePlayer(int turnCount){
         setHealth(100);
         setDefense(1+turnCount/5);
         setPower(3+turnCount/5);
     }
 
+    //TODO call to get the inventory of the player. Display in a menu?
+    public void printInventory() {
+        playerInventory.print();
+    }
+
+    //inheritence methods
     public Weapon getEWeapon(){
         return playerInventory.getEquippedWeapon();
     }
-
     public Armor getEArmor(){
         return playerInventory.getEquippedArmor();
     }
-
     public void removeItem(Item item){
         playerInventory.remove(item);
     }
-    //getters and setters for player position
-
-
 }
