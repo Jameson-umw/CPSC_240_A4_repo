@@ -16,6 +16,7 @@ public class Gameplay implements Runnable{
     private boolean slimeTouch=false;
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
+    private boolean roundWon=true;
     public Player player = new Player();
     public Enemy enemy = new Enemy(turnCount);
     //number of times key is pressed
@@ -24,12 +25,16 @@ public class Gameplay implements Runnable{
     private int xPos=25;
     private int yPos=300;
     //imgs
+    private BufferedImage nextImg;
+    private int roundCount;
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
     private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
     private BufferedImage congrats;
+    private BufferedImage lost;
+    private int lostCount=0;
     private int congratsCount;
     //frame set up
     JFrame frame; Canvas canvas; BufferStrategy bufferStrategy; boolean running=true;
@@ -47,6 +52,8 @@ public class Gameplay implements Runnable{
             slime=ImageIO.read(new File("Sprites/slime.png"));
             chest=ImageIO.read(new File("Sprites/chest.png"));
             congrats=ImageIO.read(new File("Sprites/Congrats.png"));
+            lost=ImageIO.read((new File("Sprites/You Died.png")));
+            nextImg=ImageIO.read(new File("Sprites/Next Turn.png"));
         }
         catch(IOException e){}
         anim=image1;
@@ -102,15 +109,26 @@ public class Gameplay implements Runnable{
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
         if(roomNum==1){
+            lostCount=0;
             g.drawImage(aRack,500,150,null);
             g.drawImage(sRack,500,450,null);
             g.drawImage(door1,943,300,null);
         }
         if(roomNum==2){
-            g.drawImage(door2,943,300,null);
-            if(slimeCount<10){
-            g.drawImage(slime,500,300,null);
-        }}
+            if(slimeTouch&&!roundWon&&lostCount<50){
+                g.drawImage(lost,0,0,null);
+                lostCount++;
+            }
+            else{
+                g.drawImage(door2,943,300,null);
+                if(slimeCount<10){
+                    g.drawImage(slime,500,300,null);
+                }
+            }
+            if(lostCount>=50) {
+                frame.dispose();
+            }
+        }
         if(roomNum==3){
             if(chestTouch&&congratsCount<50){
                 g.drawImage(congrats,0,0,null);
@@ -121,6 +139,21 @@ public class Gameplay implements Runnable{
                 g.drawImage(chest, 500, 300, null);
             }
             }
+        if(roomNum==4){
+            g.drawImage(nextImg,0,0,null);
+            roundCount++;
+            if(roundCount>70){roomNum=1;
+                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if(result == JOptionPane.YES_OPTION){
+                    player.saveGame(turnCount);
+                    System.out.println("save");
+                }else if (result == JOptionPane.NO_OPTION){
+                    System.out.println("not saved");
+                }
+            }
+        }
     }
     public int getTurnCount(){
         return turnCount;
@@ -132,9 +165,6 @@ public class Gameplay implements Runnable{
 
     public void GAMEPLAY(){
         player.fileMaker();
-
-
-
     }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){
@@ -184,8 +214,10 @@ public class Gameplay implements Runnable{
                 slimeCount++;
                 if(!slimeTouch){
                     slimeTouch=true;
-                new Combat(turnCount, player, enemy);
-            }}
+                    Combat combat=new Combat(turnCount, player, enemy);
+                    roundWon= combat.getWin();
+                }
+            }
         }
     }
     public void touchArmorRack(){
@@ -211,6 +243,7 @@ public class Gameplay implements Runnable{
                 yPos=300;
                 roomNum++;}
             else{
+                roomNum=4;
                 chestTouch=false;
                 slimeTouch=false;
                 enemy=new Enemy(turnCount);
@@ -219,17 +252,9 @@ public class Gameplay implements Runnable{
                 xPos=25;
                 yPos=300;
                 slimeCount=0;
-                roomNum=1;
+                congratsCount=0;
                 turnCount++;
-                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if(result == JOptionPane.YES_OPTION){
-                    player.saveGame(turnCount);
-                    System.out.println("save");
-                }else if (result == JOptionPane.NO_OPTION){
-                    System.out.println("not saved");
-                }
+
             }
 
         }
