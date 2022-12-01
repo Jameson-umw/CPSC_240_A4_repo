@@ -71,7 +71,8 @@ public class Player extends Character {
     }
 
     // Checks to see if there is a previous save. If there is not, it builds a file. if it is not, it calls readSaveGame
-    public void fileMaker() {
+    public int fileMaker() {
+        int turnCount = 0;
         try {
             String filename = ("./SaveFile/save.txt");
             File file = new File(filename);
@@ -82,11 +83,14 @@ public class Player extends Character {
             }
             // This can only happen if a game is old
             else {
-                readSaveGame(filename);
+                turnCount = readSaveGame(filename);
+                return turnCount;
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return turnCount;
     }
 
     // Method that reads in file. Turns the save data into the previous weapons and armor of a previous save. Counts turnCount, as its the most important

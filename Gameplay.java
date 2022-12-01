@@ -70,7 +70,7 @@ public class Gameplay implements Runnable{
         bufferStrategy= canvas.getBufferStrategy();
         //sets up turn count
         this.turnCount=1;
-        GAMEPLAY();
+        setTurnCount(player.fileMaker());
     }
    //runs the program
     public void run(){
@@ -115,16 +115,10 @@ public class Gameplay implements Runnable{
         return turnCount;
     }
 
-    public void setTurnCount(){
+    public void setTurnCount(int turnCount){
         this.turnCount=turnCount;
     }
 
-    public void GAMEPLAY(){
-        player.fileMaker();
-
-
-
-    }
     //moves player according to keystroke
     public void moveIt(KeyEvent evt){
         switchIm();
