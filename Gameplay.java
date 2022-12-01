@@ -16,7 +16,7 @@ public class Gameplay implements Runnable{
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
     public Player player = new Player();
-    public Enemy enemy = new Enemy();
+    public Enemy enemy = new Enemy(turnCount);
     //number of times key is pressed
     int walkCount=1;
     //x and y position
@@ -120,15 +120,13 @@ public class Gameplay implements Runnable{
     }
 
     public void resetRoom(){
-        enemy=new Enemy();
-        enemy.generateEnemy(turnCount);
+        enemy=new Enemy(turnCount);
         obtainedWeapon=false;
         obtainedArmor=false;
     }
 
     public void GAMEPLAY(){
         player.fileMaker();
-        enemy.generateEnemy(turnCount);
 
 
     }

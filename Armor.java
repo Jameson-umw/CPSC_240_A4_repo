@@ -10,29 +10,28 @@ public class Armor extends Item{
         this.equipped = equipped;
     }
 
-    // getter methods
+    public int getToughness(){
+        return toughness;
+    }
+
+    // Inheritence methods
     public boolean getEquipped(){
         return equipped;
     }
-
-    // getter methods
     public String getItemType(){
         return "Armor";
     }
 
     // Just used to change the equipped value. We will need to have this boolean here and a value for equipped armor/weapon in inventory for reading and writing between files
     public void changeEquip(){
-        if(equipped==true){
+        if(equipped){
             equipped=false;
         } else {
             equipped=true;
         }
     }
 
-    public int getToughness(){
-        return toughness;
-    }
-
+    //TODO change this to just say return toughness. It may mess up things though
     public int getValue(){
         if(getItemType().equals("Armor")){
             return toughness;

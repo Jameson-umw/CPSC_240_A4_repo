@@ -4,10 +4,7 @@ public abstract class Character {
     protected int health;
     protected int power;
     protected int defense;
-
-    //A number that we are able to change to our needs
     protected static final int maxInventoryWeight = 35;
-
 
     public Character(){
         health=100;
@@ -32,6 +29,10 @@ public abstract class Character {
 
     public int getDefense() {
         return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
     public Weapon weaponlist(int turnCount){
@@ -73,10 +74,7 @@ public abstract class Character {
         } return new Armor(20, "Iron Armor",  25+turnCount, 4+turnCount,false);
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
+    // Inheritence methods
     abstract public Weapon getEWeapon();
     abstract public Armor getEArmor();
     abstract public void removeItem(Item item);
