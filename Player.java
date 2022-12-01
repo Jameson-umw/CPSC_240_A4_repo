@@ -105,7 +105,8 @@ public class Player extends Character {
     }
 
 
-    public void saveGame(String filename){
+    public void saveGame(int turnCount){
+        playerInventory.saveState(turnCount);
 
     }
 

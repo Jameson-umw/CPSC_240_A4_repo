@@ -1,3 +1,6 @@
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Inventory {
@@ -48,10 +51,7 @@ public class Inventory {
 
     //we can make this method later, while its very simple, im not sure yet on what we are doing with this just yet
     public void print(){
-        for(Item item: items){
-            System.out.println(item.getItemName());
-            System.out.println(item.getDurability());
-        }
+
     }
 
     public void setInventoryWeight(){
@@ -71,6 +71,36 @@ public class Inventory {
             unequipItem(item);
         }
         items.remove(item);
+    }
+
+    public void saveState(int turnCount){
+        try{
+            new FileOutputStream("save.txt", false).close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileWriter myWriter = new FileWriter("save.txt");
+        for(Item item: items) {
+            myWriter.write(String.valueOf(item.getWeight()));
+            myWriter.write(String.format("%n"));
+            myWriter.write(item.getItemName());
+            myWriter.write(String.format("%n"));
+            myWriter.write(String.valueOf(item.getDurability()));
+            myWriter.write(String.format("%n"));
+            myWriter.write(String.valueOf(item.getValue()));
+            myWriter.write(String.format("%n"));
+            myWriter.write(String.valueOf(item.getEquipped()));
+            myWriter.write(String.format("%n"));
+            myWriter.write(item.getItemType());
+            myWriter.write(String.format("%n"));
+            myWriter.write(String.format("%n"));
+        }
+        myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getInventoryWeight(){

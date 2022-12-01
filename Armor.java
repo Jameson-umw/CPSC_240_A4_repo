@@ -32,4 +32,11 @@ public class Armor extends Item{
     public int getToughness(){
         return toughness;
     }
+
+    public int getValue(){
+        if(getItemType().equals("Armor")){
+            return toughness;
+        }
+        return 0;
+    }
 }
