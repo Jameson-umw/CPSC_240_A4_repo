@@ -18,62 +18,44 @@ public class Player extends Character {
         this.playerInventory = playerInventory;
     }
 
-    public boolean generateWeapon(int turnCount, boolean obtainedWeapon) {
+    public int generateWeapon(int turnCount, boolean obtainedWeapon) {
+        int cases = 0;
         Weapon weapon = weaponlist(turnCount);
-        //reworked if statement to fit notif method
         if(obtainedWeapon){
-            notif(ItemStatus.OBTAINED);
+            cases =1;
         }else {
             if((playerInventory.getInventoryWeight()+weapon.weight) < maxInventoryWeight){
                 playerInventory.addItem(weapon);
-                notif(ItemStatus.FITS);
-            } else {
-                notif(ItemStatus.NOTFIT);
-                return false;
+                cases =2;
             }
         }
         playerInventory.setInventoryWeight();
-        return true;
+        return cases;
     }
 
-    public boolean generateArmor(int turnCount, boolean obtainedArmor) {
+    public int generateArmor(int turnCount, boolean obtainedArmor) {
+        int cases = 0;
         Armor armor = armorList(turnCount);
-        //reworked if statement to work with notif method
         if(obtainedArmor){
-            notif(ItemStatus.OBTAINED);
+            cases = 1;
         } else{
             if((playerInventory.getInventoryWeight() + armor.weight)<maxInventoryWeight){
                 playerInventory.addItem(armor);
-                notif(ItemStatus.FITS);
-            } else {
-                notif(ItemStatus.NOTFIT);
-                return false;
+                cases =2;
             }
         }
         playerInventory.setInventoryWeight();
-        return true;
-    }
-
-    public enum ItemStatus{FITS, NOTFIT, OBTAINED}
-    //when item is picked up, or you try to pick something up when the bag is full, display corresponding notification
-    public void notif(ItemStatus status){
-        Gameplay g=new Gameplay();
-        switch (status){
-            case OBTAINED:
-                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"You already obtained that item");
-                break;
-            case NOTFIT:
-                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"Your bag is too full. Drop an item and try again");
-                break;
-            case FITS:
-                JOptionPane.showMessageDialog(g.sendFrametoNotif(),"An item was added to your inventory!");
-        }
+        return cases;
     }
 
     // Checks to see if there is a previous save. If there is not, it builds a file. if it is not, it calls readSaveGame
     public int fileMaker() {
         int turnCount = 0;
         try {
+            File save = new File("./SaveFile/");
+            if (!save.exists()){
+                save.mkdirs();
+            }
             String filename = ("./SaveFile/save.txt");
             File file = new File(filename);
 
@@ -171,7 +153,6 @@ public class Player extends Character {
     }
 
     public void equip(Item item){
-        System.out.println(item.itemName);
         playerInventory.equipItem(item);
     }
 
@@ -183,10 +164,6 @@ public class Player extends Character {
     public void updatePlayer(int turnCount){
         setDefense(4+turnCount/5);
         setPower(5+turnCount/5);
-    }
-
-    public void printInventory() {
-        playerInventory.print();
     }
 
     //get inventory for inventory menu
