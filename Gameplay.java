@@ -9,6 +9,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
+import java.util.Objects;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
@@ -19,8 +21,6 @@ public class Gameplay implements Runnable{
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
     private boolean roundWon=true;
-    private boolean weaponEquipped=false;
-    private boolean armorEquipped=false;
     public Player player = new Player();
     public Enemy enemy = new Enemy(turnCount);
     //number of times key is pressed
@@ -314,6 +314,7 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
+
                         //if the item is equipped, add a star to it
                         if(item.equals(player.getEArmor())){
                             menuItem=new JMenuItem("* "+item.itemName);
@@ -340,6 +341,7 @@ public class Gameplay implements Runnable{
                 JMenuItem menuItem;
                 //for each item in the inventory, print it as a button. When that button is pressed, equip that item
                 if(player.getPlayerInventory().size()>0){
+                    int i=1;
                     for (Item item:player.getPlayerInventory()) {
                         //display each item
                         if(item.equals(player.getEArmor())){
@@ -428,6 +430,7 @@ public class Gameplay implements Runnable{
                 JMenuItem menuItem;
                 //if there are items, for each in the inventory, print it as a button
                 if(player.getPlayerInventory().size()>0){
+                    int i=1;
                     for (Item item:player.getPlayerInventory()) {
 
                         //list items
