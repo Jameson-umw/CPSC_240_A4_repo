@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
-    private int roomNum=1;
+    private int roomNum=0;
     private int turnCount;
     private boolean chestTouch=false;
     private boolean slimeTouch=false;
@@ -118,6 +118,10 @@ public class Gameplay implements Runnable{
     }
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
+        if(roomNum==0){
+            JOptionPane.showMessageDialog(sendFrametoNotif(),"Press 'I' for inventory. Make sure to keep an eye on it items can break and enemies get harder!");
+            roomNum=1;
+        }
         if(roomNum==1){
             lostCount=0;
             g.drawImage(aRack,500,150,null);
