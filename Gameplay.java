@@ -141,14 +141,13 @@ public class Gameplay implements Runnable{
             }
         }
         if(roomNum==3){
-            if(chestTouch&&congratsCount<50){
+            /*if(chestTouch&&congratsCount<50){
                 g.drawImage(congrats,0,0,null);
                 congratsCount++;
-            }
-            else {
+            }*/
+
                 g.drawImage(door3, 943, 300, null);
                 g.drawImage(chest, 500, 300, null);
-            }
         }
         if(roomNum==4){
             g.drawImage(nextImg,0,0,null);
@@ -208,8 +207,9 @@ public class Gameplay implements Runnable{
     public void touchChest(){
         if(roomNum==3&&!chestTouch){
             if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
-                chestTouch=true;
+                if(!chestTouch){JOptionPane.showMessageDialog(sendFrametoNotif(),"Your Health Has Been Restored!");}
                 player.setHealth(100);
+                chestTouch=true;
             }
         }
     }
