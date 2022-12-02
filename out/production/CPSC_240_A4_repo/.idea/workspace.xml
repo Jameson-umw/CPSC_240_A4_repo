@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26b0b3bc-fd0b-4458-9b8f-82c135ebb0d6" name="Changes" comment="Added notification pop ups for item gain">
+    <list default="true" id="df3a35ad-0a31-410e-a90a-6b24e78fbeb8" name="Changes" comment="Popups">
       <change beforePath="$PROJECT_DIR$/Gameplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gameplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,175 +18,245 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2GxKPVUMpNus1naOqjlFuuNHauT" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2HhJWsgzhqgjUZ3ZGgcy8k4HadK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/lastw/IdeaProjects/CPSC_240_A4_repo/TeachersAnimationExample"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\lastw\IdeaProjects\CPSC_240_A4_repo\TeachersAnimationExample" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="NonCodeFiles" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\lastw\IdeaProjects\CPSC_240_A4_repo\Sprites" />
-      <recent name="C:\Users\lastw\IdeaProjects\CPSC_240_A4_repo" />
-    </key>
+  </component>
+  <component name="RunManager" selected="Application.Gameplay">
+    <configuration name="Animation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TeachersAnimationExample.Animation" />
+      <module name="CPSC_240_A4_repo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TeachersAnimationExample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Gameplay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Gameplay" />
+      <module name="CPSC_240_A4_repo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="CPSC_240_A4_repo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Gameplay" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Animation" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="26b0b3bc-fd0b-4458-9b8f-82c135ebb0d6" name="Changes" comment="" />
-      <created>1667324770839</created>
+      <changelist id="df3a35ad-0a31-410e-a90a-6b24e78fbeb8" name="Changes" comment="" />
+      <created>1668731417325</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1667324770839</updated>
+      <updated>1668731417325</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added name">
-      <created>1667325350673</created>
+    <task id="LOCAL-00001" summary="Added DIA starter">
+      <created>1668731494817</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1667325350673</updated>
+      <updated>1668731494817</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added name">
-      <created>1667325436327</created>
+    <task id="LOCAL-00002" summary="Added default values">
+      <created>1669694300827</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1667325436327</updated>
+      <updated>1669694300827</updated>
     </task>
-    <task id="LOCAL-00003" summary="Added email">
-      <created>1667325570896</created>
+    <task id="LOCAL-00003" summary="Added information about player sprite position, image and size.">
+      <created>1669837806475</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1667325570896</updated>
+      <updated>1669837806475</updated>
     </task>
-    <task id="LOCAL-00004" summary="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name">
-      <created>1669693933497</created>
+    <task id="LOCAL-00004" summary="Added spot image for player">
+      <created>1669847635244</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1669693933497</updated>
+      <updated>1669847635244</updated>
     </task>
-    <task id="LOCAL-00005" summary="Made teachersanimationexample folder with teacher's animation example from class therewithin">
-      <created>1669848526059</created>
+    <task id="LOCAL-00005" summary="Adding frame stuff">
+      <created>1669851390200</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1669848526059</updated>
+      <updated>1669851390200</updated>
     </task>
-    <task id="LOCAL-00006" summary="Made the sprites folder and added the slime sprite">
-      <created>1669850381014</created>
+    <task id="LOCAL-00006" summary="Updating player image info">
+      <created>1669853206830</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1669850381014</updated>
+      <updated>1669853206830</updated>
     </task>
-    <task id="LOCAL-00007" summary="added left sprites">
-      <created>1669854348063</created>
+    <task id="LOCAL-00007" summary="Added information key to player movement">
+      <created>1669855316648</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1669854348063</updated>
+      <updated>1669855316648</updated>
     </task>
-    <task id="LOCAL-00008" summary="added right sprites and put all sprites in folder">
-      <created>1669854917928</created>
+    <task id="LOCAL-00008" summary="Please help">
+      <created>1669858582935</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1669854917928</updated>
+      <updated>1669858582935</updated>
     </task>
-    <task id="LOCAL-00009" summary="fixed r2">
-      <created>1669855366799</created>
+    <task id="LOCAL-00009" summary="Please help">
+      <created>1669858867555</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1669855366799</updated>
+      <updated>1669858867555</updated>
     </task>
-    <task id="LOCAL-00010" summary="sword and armor rack for first room added">
-      <created>1669858015822</created>
+    <task id="LOCAL-00010" summary="Getting things set up">
+      <created>1669862418566</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1669858015822</updated>
+      <updated>1669862418566</updated>
     </task>
-    <task id="LOCAL-00011" summary="trying to fix an error, didn't change anything">
-      <created>1669858992752</created>
+    <task id="LOCAL-00011" summary="YEAAAAAAH">
+      <created>1669864679550</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1669858992752</updated>
+      <updated>1669864679550</updated>
     </task>
-    <task id="LOCAL-00012" summary="Added death screen">
-      <created>1669867834629</created>
+    <task id="LOCAL-00012" summary="adding more images">
+      <created>1669864908860</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1669867834629</updated>
+      <updated>1669864908860</updated>
     </task>
-    <task id="LOCAL-00013" summary="Added congradulations and next turn screen">
-      <created>1669870513176</created>
+    <task id="LOCAL-00013" summary="Added chest and items to rooms">
+      <created>1669865993113</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1669870513176</updated>
+      <updated>1669865993113</updated>
     </task>
-    <task id="LOCAL-00014" summary="Added notification pop ups for item gain">
-      <created>1669874793174</created>
+    <task id="LOCAL-00014" summary="Room change mechanic">
+      <created>1669866999062</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1669874793174</updated>
+      <updated>1669866999062</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added item touch mechanic">
+      <created>1669869504885</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669869504885</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Removed items">
+      <created>1669870029554</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669870029554</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added save">
+      <created>1669874507149</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669874507149</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Deletes slime after battle">
+      <created>1669876591591</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1669876591591</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added congrats pop up">
+      <created>1669878358652</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1669878358652</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Popups">
+      <created>1669880873562</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1669880873562</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added name" />
-    <MESSAGE value="Added email" />
-    <MESSAGE value="Moved non-code files to its own folder and made the Character class with getters and setters" />
-    <MESSAGE value="Moved non-code files to its own folder, made the Character class with getters and setters, and renamed main to not conflict with class name" />
-    <MESSAGE value="Made teachersanimationexample folder with teacher's animation example from class therewithin" />
-    <MESSAGE value="Made the sprites folder and added the slime sprite" />
-    <MESSAGE value="added left sprites" />
-    <MESSAGE value="added right sprites and put all sprites in folder" />
-    <MESSAGE value="fixed r2" />
-    <MESSAGE value="sword and armor rack for first room added" />
-    <MESSAGE value="trying to fix an error, didn't change anything" />
-    <MESSAGE value="Added death screen" />
-    <MESSAGE value="Added congradulations and next turn screen" />
-    <MESSAGE value="Added notification pop ups for item gain" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added notification pop ups for item gain" />
+    <MESSAGE value="Added DIA starter" />
+    <MESSAGE value="Added default values" />
+    <MESSAGE value="Added information about player sprite position, image and size." />
+    <MESSAGE value="Added spot image for player" />
+    <MESSAGE value="Adding frame stuff" />
+    <MESSAGE value="Updating player image info" />
+    <MESSAGE value="Added information key to player movement" />
+    <MESSAGE value="Please help" />
+    <MESSAGE value="Getting things set up" />
+    <MESSAGE value="YEAAAAAAH" />
+    <MESSAGE value="adding more images" />
+    <MESSAGE value="Added chest and items to rooms" />
+    <MESSAGE value="Room change mechanic" />
+    <MESSAGE value="Added item touch mechanic" />
+    <MESSAGE value="Removed items" />
+    <MESSAGE value="Added save" />
+    <MESSAGE value="Deletes slime after battle" />
+    <MESSAGE value="Added congrats pop up" />
+    <MESSAGE value="Popups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Popups" />
   </component>
 </project>

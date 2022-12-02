@@ -385,11 +385,16 @@ public class Gameplay implements Runnable{
 
     public void newRoom(){
         if((925<=xPos)&&(280<=yPos)&&(yPos<=420)){
-            if(roomNum<3){
+            if(roomNum==1){
                 xPos=25;
                 yPos=300;
                 roomNum++;}
-            else{
+            else if(roomNum==2&&slimeTouch){
+                xPos=25;
+                yPos=300;
+                roomNum++;
+            }
+            else if (roomNum==3){
                 roomNum=4;
                 //roomNum=1;
                 chestTouch=false;
