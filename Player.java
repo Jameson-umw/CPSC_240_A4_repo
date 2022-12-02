@@ -118,11 +118,24 @@ public class Player extends Character {
                         line = fileReader.readLine();
                         line = fileReader.readLine();
                         if (itemType.equals("Weapon")) {
-                            Weapon weapon = new Weapon(weight, WeaponName, durability, value, equipped);
-                            playerInventory.addItem(weapon);
+                            if(equipped){
+                                Weapon weapon = new Weapon(weight, WeaponName, durability, value, false);
+                                playerInventory.addItem(weapon);
+                                equip(weapon);
+                            } else {
+                                Weapon weapon = new Weapon(weight, WeaponName, durability, value, equipped);
+                                playerInventory.addItem(weapon);
+                            }
                         } else {
-                            Armor armor = new Armor(weight, WeaponName, durability, value, equipped);
-                            playerInventory.addItem(armor);
+                            if(equipped){
+                                Armor armor = new Armor(weight, WeaponName, durability, value, false);
+                                playerInventory.addItem(armor);
+                                equip(armor);
+                            } else {
+                                Armor armor = new Armor(weight, WeaponName, durability, value, equipped);
+                                playerInventory.addItem(armor);
+                            }
+
                         }
                     }
                     fileReader.close();
