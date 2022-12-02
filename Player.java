@@ -40,11 +40,11 @@ public class Player extends Character {
         //reworked if statement to work with notif method
         if(obtainedArmor){
             cases = 1;
-        } else{
-            if((playerInventory.getInventoryWeight() + armor.weight)<maxInventoryWeight){
-                playerInventory.addItem(armor);
-                cases =2;
-            }
+        } else if((playerInventory.getInventoryWeight() + armor.weight)<maxInventoryWeight){
+            playerInventory.addItem(armor);
+            cases =2;
+        } else {
+            cases=3;
         }
         playerInventory.setInventoryWeight();
         return cases;
