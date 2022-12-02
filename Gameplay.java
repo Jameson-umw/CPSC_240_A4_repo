@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Objects;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
@@ -32,6 +33,7 @@ public class Gameplay implements Runnable{
     private int roundCount;
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
     private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
+    private BufferedImage image3; private BufferedImage image4;
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
@@ -60,9 +62,11 @@ public class Gameplay implements Runnable{
             congrats=ImageIO.read(new File("Sprites/Congrats.png"));
             lost=ImageIO.read((new File("Sprites/You Died.png")));
             nextImg=ImageIO.read(new File("Sprites/Next Turn.png"));
+            image3=ImageIO.read(new File("Sprites/base knight l1.png"));
+            image4=ImageIO.read(new File("Sprites/base knight l2.png"));
         }
         catch(IOException e){}
-        anim=image1;
+        anim=image3;
         //setting up frame and panel
         frame=new JFrame("Final Project");
         JPanel panel=(JPanel) frame.getContentPane();
@@ -205,8 +209,16 @@ public class Gameplay implements Runnable{
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
-            if(anim.equals(image1)){anim=image2;}
-            else{anim=image1;}}
+            if(Objects.equals(player.getEWeapon(), null) || Objects.equals(player.getEArmor(), null)){
+                if(anim.equals(image1)||anim.equals(image2)){anim=image3;}
+                if(anim.equals(image3)){
+                    anim=image4;
+                }
+                else{anim=image3;}
+            }
+            else{
+                if(anim.equals(image1)){anim=image2;}
+                else{anim=image1;}}}
     }
     public void touchChest(){
         if(roomNum==3&&!chestTouch){
