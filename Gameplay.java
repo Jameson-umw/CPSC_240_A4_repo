@@ -185,9 +185,9 @@ public class Gameplay implements Runnable{
                         JOptionPane.QUESTION_MESSAGE);
                 if(result == JOptionPane.YES_OPTION){
                     player.saveGame(turnCount);
-                    System.out.println("save");
+                    //System.out.println("save");
                 }else if (result == JOptionPane.NO_OPTION){
-                    System.out.println("not saved");
+                    //System.out.println("not saved");
                 }
             }
         }

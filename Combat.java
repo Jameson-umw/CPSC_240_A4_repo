@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Combat {
     private int aDurability = 0;
     private int wDurability = 0;
@@ -100,12 +102,14 @@ public class Combat {
             enemy.setHealth(enemy.getHealth() - player.getPower());
         }
 
+        //Gameplay gameplay=new Gameplay();
         //TODO pop up window for items breaking
         try {
             player.getEWeapon().setDurability(wDurability - toughness);
             if (wDurability <= 0) {
                 player.removeItem(player.getEWeapon());
-                System.out.println("Your equipped weapon broke");
+                //System.out.println("Your equipped weapon broke");
+                //JOptionPane.showMessageDialog(gameplay.sendFrametoNotif(),"Your equipped weapon broke");
             }
         }catch (NullPointerException e) {
         }
@@ -113,7 +117,8 @@ public class Combat {
             enemy.getEArmor().setDurability(aDurability - strength);
             if (aDurability <= 0) {
                 enemy.removeItem(enemy.getEArmor());
-                System.out.println("Your equipped armor broke");
+                //System.out.println("Your equipped armor broke");
+                //JOptionPane.showMessageDialog(gameplay.sendFrametoNotif(),"Your equipped armor broke");
             }
         }catch (NullPointerException e) {
         }
