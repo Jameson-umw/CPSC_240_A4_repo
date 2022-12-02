@@ -275,8 +275,10 @@ public class Gameplay implements Runnable{
                 switch (cases) {
                     case 1:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "You already obtained that item");
+                        break;
                     case 0:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                        break;
                     case 2:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
                         obtainedArmor = true;
@@ -291,8 +293,10 @@ public class Gameplay implements Runnable{
                 switch (cases) {
                     case 1:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "You already obtained that item");
+                        break;
                     case 0:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                        break;
                     case 2:
                         JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
                         obtainedWeapon = true;

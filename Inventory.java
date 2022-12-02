@@ -45,7 +45,6 @@ public class Inventory {
         }
     }
 
-
     // Changes equip status of a weapon or armor to false
     // can likely remove the first if statement, it is more or less a failsafe for performance should the code attempt to unequip a healing item
     public void unequipItem(Item item) {
