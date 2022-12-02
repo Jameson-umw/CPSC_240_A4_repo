@@ -18,7 +18,7 @@ public class Player extends Character {
         this.playerInventory = playerInventory;
     }
 
-    public void generateWeapon(int turnCount, boolean obtainedWeapon) {
+    public boolean generateWeapon(int turnCount, boolean obtainedWeapon) {
         Weapon weapon = weaponlist(turnCount);
         //reworked if statement to fit notif method
         if(obtainedWeapon){
@@ -29,12 +29,14 @@ public class Player extends Character {
                 notif(ItemStatus.FITS);
             } else {
                 notif(ItemStatus.NOTFIT);
+                return false;
             }
         }
         playerInventory.setInventoryWeight();
+        return true;
     }
 
-    public void generateArmor(int turnCount, boolean obtainedArmor) {
+    public boolean generateArmor(int turnCount, boolean obtainedArmor) {
         Armor armor = armorList(turnCount);
         //reworked if statement to work with notif method
         if(obtainedArmor){
@@ -45,9 +47,11 @@ public class Player extends Character {
                 notif(ItemStatus.FITS);
             } else {
                 notif(ItemStatus.NOTFIT);
+                return false;
             }
         }
         playerInventory.setInventoryWeight();
+        return true;
     }
 
     public enum ItemStatus{FITS, NOTFIT, OBTAINED}
@@ -137,10 +141,6 @@ public class Player extends Character {
         return 0;
     }
 
-    public boolean dropStuff(int num){
-        return playerInventory.remove(num);
-    }
-
     //Deletes a file when a charecter dies or if the file has an error and detects null pointer exceptions. if a null pointer exception is called, it
     //effectivly removes the bad file and starts again.
     public void fileDeleter(){
@@ -157,13 +157,17 @@ public class Player extends Character {
         playerInventory.saveState(turnCount);
     }
 
-    public boolean equipNum(int num){
-        return playerInventory.equipItem(num);
+    public void equip(Item item){
+        System.out.println(item.itemName);
+        playerInventory.equipItem(item);
+    }
+
+    public void unequipItem(Item item){
+        playerInventory.unequipItem(item);
     }
 
     //Updates health, strength, and power of the player
     public void updatePlayer(int turnCount){
-        setHealth(100);
         setDefense(4+turnCount/5);
         setPower(5+turnCount/5);
     }
@@ -174,7 +178,7 @@ public class Player extends Character {
 
     //get inventory for inventory menu
     public ArrayList<Item> getPlayerInventory(){
-        return  playerInventory.getInventory();
+        return playerInventory.getInventory();
     }
 
     //inheritence methods
