@@ -82,8 +82,9 @@ public class Gameplay implements Runnable{
             anim=armor1;
         } else if(equippedArmor==false&&equippedWeapon==true){
             anim=weapon1;
-        } else
-            anim=noGear1;
+        } else {
+            anim = noGear1;
+        }
 
         //setting up frame and panel
         frame=new JFrame("Final Project");
