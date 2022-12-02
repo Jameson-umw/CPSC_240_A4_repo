@@ -136,7 +136,7 @@ public class Gameplay implements Runnable{
                 }
             }
             if(lostCount>=50) {
-                frame.dispose();
+                System.exit(0);
             }
         }
         if(roomNum==3){
