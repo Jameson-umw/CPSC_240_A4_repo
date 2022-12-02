@@ -1,16 +1,10 @@
-import java.awt.*;
 import java.io.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class Player extends Character {
 
-    //x and y pos of player
-    private boolean visible;
     private Inventory playerInventory;
 
     public Player() {
