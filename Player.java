@@ -15,6 +15,7 @@ public class Player extends Character {
     public int generateWeapon(int turnCount, boolean obtainedWeapon) {
         int cases = 0;
         Weapon weapon = weaponlist(turnCount);
+        //reworked if statement to fit notif method
         if(obtainedWeapon){
             cases =1;
         }else {
@@ -30,6 +31,7 @@ public class Player extends Character {
     public int generateArmor(int turnCount, boolean obtainedArmor) {
         int cases = 0;
         Armor armor = armorList(turnCount);
+        //reworked if statement to work with notif method
         if(obtainedArmor){
             cases = 1;
         } else{
@@ -147,6 +149,7 @@ public class Player extends Character {
     }
 
     public void equip(Item item){
+        System.out.println(item.itemName);
         playerInventory.equipItem(item);
     }
 
@@ -159,6 +162,10 @@ public class Player extends Character {
         setDefense(4+turnCount/5);
         setPower(5+turnCount/5);
     }
+
+//    public void printInventory() {
+//        playerInventory.print();
+//    }
 
     //get inventory for inventory menu
     public ArrayList<Item> getPlayerInventory(){

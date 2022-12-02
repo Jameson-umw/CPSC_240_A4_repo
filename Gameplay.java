@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Objects;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
@@ -31,7 +32,10 @@ public class Gameplay implements Runnable{
     private BufferedImage nextImg;
     private int roundCount;
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
-    private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
+    private BufferedImage fullGear1; private BufferedImage fullGear2; private BufferedImage anim;
+    private BufferedImage noGear1; private BufferedImage noGear2;
+    private BufferedImage armor1; private BufferedImage armor2;
+    private BufferedImage weapon1; private BufferedImage weapon2;
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
@@ -48,8 +52,14 @@ public class Gameplay implements Runnable{
     public Gameplay(){
         //uploading images
         try{
-            image1= ImageIO.read(new File("Sprites/knight l1.png"));
-            image2= ImageIO.read(new File("Sprites/knight l2.png"));
+            noGear1 =ImageIO.read(new File("Sprites/base knight l1.png"));
+            noGear2=ImageIO.read(new File("Sprites/base knight l2.png"));
+            armor1=ImageIO.read(new File("Sprites/armor knight l1.png"));
+            armor2=ImageIO.read(new File("Sprites/armor knight l2.png"));
+            weapon1=ImageIO.read(new File("Sprites/weapon knight l1.png"));
+            weapon2=ImageIO.read(new File("Sprites/weapon knight l2.png"));
+            fullGear1 = ImageIO.read(new File("Sprites/knight l1.png"));
+            fullGear2 = ImageIO.read(new File("Sprites/knight l2.png"));
             door1=ImageIO.read(new File("Sprites/door.png"));
             door2=ImageIO.read(new File("Sprites/door.png"));
             door3=ImageIO.read(new File("Sprites/door.png"));
@@ -62,7 +72,17 @@ public class Gameplay implements Runnable{
             nextImg=ImageIO.read(new File("Sprites/Next Turn.png"));
         }
         catch(IOException e){}
-        anim=image1;
+        //start out with no gear
+        //if have gear, like when continuing from save, open with gear
+        if(obtainedArmor==true&&obtainedWeapon==true){
+            anim=fullGear1;
+        } else if(obtainedArmor==true&&obtainedWeapon==false){
+            anim=armor1;
+        } else if(obtainedArmor==false&&obtainedWeapon==true){
+            anim=weapon1;
+        } else
+            anim=noGear1;
+
         //setting up frame and panel
         frame=new JFrame("Final Project");
         JPanel panel=(JPanel) frame.getContentPane();
@@ -119,7 +139,7 @@ public class Gameplay implements Runnable{
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
         if(roomNum==0){
-            JOptionPane.showMessageDialog(sendFrametoNotif(),"Press 'I' for inventory. Make sure to keep an eye on it items can break and enemies get harder!");
+            JOptionPane.showMessageDialog(sendFrametoNotif(),"Tap the screen to start. Press 'I' for inventory. Make sure to keep an eye on it items can break and enemies get harder!");
             roomNum=1;
         }
         if(roomNum==1){
@@ -205,8 +225,22 @@ public class Gameplay implements Runnable{
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
-            if(anim.equals(image1)){anim=image2;}
-            else{anim=image1;}}
+            //match the animations part 1 and 2
+            if(anim.equals(noGear1)){
+                anim=noGear2;
+            } else if(anim.equals(noGear2)){
+                anim=noGear1;
+            } else if (anim.equals(weapon1)) {
+                anim=weapon2;
+            } else if (anim.equals(weapon2)) {
+                anim=weapon1;
+            } else if (anim.equals(armor1)) {
+                anim=armor2;
+            } else if (anim.equals(armor2)) {
+                anim=armor1;
+            } else if(anim.equals(fullGear1)){
+                anim= fullGear2;
+            } else{anim= fullGear1;}}
     }
     public void touchChest(){
         if(roomNum==3&&!chestTouch){
@@ -334,10 +368,60 @@ public class Gameplay implements Runnable{
                                 //if you click on an item that's already equipped, unequip it
                                 if(item.equals(player.getEWeapon())||item.equals(player.getEArmor())){
                                     JOptionPane.showMessageDialog(sendFrametoNotif(),"Unequipped "+item.getItemName());
+                                    //depending on what was unequipped, change the sprite
+                                    if(item.equals(player.getEWeapon())){
+                                        obtainedWeapon=false;
+                                        if(anim.equals(weapon1)){
+                                            anim=noGear1;
+                                        }else if (anim.equals(weapon2)){
+                                            anim=noGear2;
+                                        } else if (anim.equals(fullGear1)) {
+                                            anim=armor1;
+                                        } else if (anim.equals(fullGear2)) {
+                                            anim=armor2;
+                                        }
+                                    }
+                                    if (item.equals(player.getEArmor())) {
+                                        obtainedArmor=false;
+                                        if(anim.equals(armor1)){
+                                            anim=noGear1;
+                                        }else if (anim.equals(armor2)){
+                                            anim=noGear2;
+                                        } else if (anim.equals(fullGear1)) {
+                                            anim=weapon1;
+                                        } else if (anim.equals(fullGear2)) {
+                                            anim=weapon2;
+                                        }
+                                    }
                                     player.unequipItem(item);
                                 } else {
                                     JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
                                     player.equip(item);
+                                    //depending on what was equipped, change the sprite into the matching equipped sprite
+                                    if(item.equals(player.getEWeapon())){
+                                        obtainedWeapon=true;
+                                        if(anim.equals(noGear1)){
+                                            anim=weapon1;
+                                        }else if (anim.equals(noGear2)){
+                                            anim=weapon2;
+                                        } else if (anim.equals(armor1)) {
+                                            anim=fullGear1;
+                                        } else if (anim.equals(armor2)) {
+                                            anim=fullGear2;
+                                        }
+                                    }
+                                    if (item.equals(player.getEArmor())) {
+                                        obtainedArmor=true;
+                                        if(anim.equals(noGear1)){
+                                            anim=armor1;
+                                        }else if (anim.equals(noGear2)){
+                                            anim=armor2;
+                                        } else if (anim.equals(weapon1)) {
+                                            anim=fullGear1;
+                                        } else if (anim.equals(weapon2)) {
+                                            anim=fullGear2;
+                                        }
+                                    }
                                 }
                             }
                         });
