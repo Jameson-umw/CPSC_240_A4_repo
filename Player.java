@@ -169,9 +169,9 @@ public class Player extends Character {
         setPower(5+turnCount/5);
     }
 
-    public void printInventory() {
-        playerInventory.print();
-    }
+//    public void printInventory() {
+//        playerInventory.print();
+//    }
 
     //get inventory for inventory menu
     public ArrayList<Item> getPlayerInventory(){
