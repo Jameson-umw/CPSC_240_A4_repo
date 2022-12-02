@@ -221,6 +221,10 @@ public class Gameplay implements Runnable{
                     slimeTouch=true;
                     Combat combat=new Combat(turnCount, player, enemy);
                     roundWon= combat.getWin();
+                    if(roundWon){
+                        JOptionPane.showMessageDialog(sendFrametoNotif(),"You Won!");
+
+                    }
                 }
             }
         }
