@@ -141,13 +141,13 @@ public class Gameplay implements Runnable{
             }
         }
         if(roomNum==3){
-            /*if(chestTouch&&congratsCount<50){
-                g.drawImage(congrats,0,0,null);
+            if(chestTouch&&congratsCount<50) {
+                g.drawImage(congrats, 0, 0, null);
                 congratsCount++;
-            }*/
-
+            }
+            else{
                 g.drawImage(door3, 943, 300, null);
-                g.drawImage(chest, 500, 300, null);
+                g.drawImage(chest, 500, 300, null);}
         }
         if(roomNum==4){
             g.drawImage(nextImg,0,0,null);
