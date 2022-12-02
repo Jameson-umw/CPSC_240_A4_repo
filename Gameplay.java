@@ -9,7 +9,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.InputMismatchException;
 
 public class Gameplay implements Runnable{
     private int slimeCount=0;
@@ -20,6 +19,8 @@ public class Gameplay implements Runnable{
     private boolean obtainedWeapon=false;
     private boolean obtainedArmor=false;
     private boolean roundWon=true;
+    private boolean weaponEquipped=false;
+    private boolean armorEquipped=false;
     public Player player = new Player();
     public Enemy enemy = new Enemy(turnCount);
     //number of times key is pressed
@@ -31,7 +32,10 @@ public class Gameplay implements Runnable{
     private BufferedImage nextImg;
     private int roundCount;
     private BufferedImage door1; private BufferedImage door2; private BufferedImage door3;
-    private BufferedImage image1; private BufferedImage image2; private BufferedImage anim;
+    private BufferedImage fullGear1; private BufferedImage fullGear2; private BufferedImage anim;
+    private BufferedImage noGear1; private BufferedImage noGear2;
+    private BufferedImage armor1; private BufferedImage armor2;
+    private BufferedImage weapon1; private BufferedImage weapon2;
     private BufferedImage aRack; private BufferedImage sRack;
     private BufferedImage slime;
     private BufferedImage chest;
@@ -48,8 +52,14 @@ public class Gameplay implements Runnable{
     public Gameplay(){
         //uploading images
         try{
-            image1= ImageIO.read(new File("Sprites/knight l1.png"));
-            image2= ImageIO.read(new File("Sprites/knight l2.png"));
+            noGear1 =ImageIO.read(new File("Sprites/base knight l1.png"));
+            noGear2=ImageIO.read(new File("Sprites/base knight l2.png"));
+            armor1=ImageIO.read(new File("Sprites/armor knight l1.png"));
+            armor2=ImageIO.read(new File("Sprites/armor knight l2.png"));
+            weapon1=ImageIO.read(new File("Sprites/weapon knight l1.png"));
+            weapon2=ImageIO.read(new File("Sprites/weapon knight l2.png"));
+            fullGear1 = ImageIO.read(new File("Sprites/knight l1.png"));
+            fullGear2 = ImageIO.read(new File("Sprites/knight l2.png"));
             door1=ImageIO.read(new File("Sprites/door.png"));
             door2=ImageIO.read(new File("Sprites/door.png"));
             door3=ImageIO.read(new File("Sprites/door.png"));
@@ -62,7 +72,9 @@ public class Gameplay implements Runnable{
             nextImg=ImageIO.read(new File("Sprites/Next Turn.png"));
         }
         catch(IOException e){}
-        anim=image1;
+        //start out with no gear
+        anim=noGear1;
+
         //setting up frame and panel
         frame=new JFrame("Final Project");
         JPanel panel=(JPanel) frame.getContentPane();
@@ -205,8 +217,22 @@ public class Gameplay implements Runnable{
     //switches animation image after 5 keystrokes
     public void switchIm(){
         if((walkCount%5)==0){
-            if(anim.equals(image1)){anim=image2;}
-            else{anim=image1;}}
+            //match the animations part 1 and 2
+            if(anim.equals(noGear1)){
+                anim=noGear2;
+            } else if(anim.equals(noGear2)){
+                anim=noGear1;
+            } else if (anim.equals(weapon1)) {
+                anim=weapon2;
+            } else if (anim.equals(weapon2)) {
+                anim=weapon1;
+            } else if (anim.equals(armor1)) {
+                anim=armor2;
+            } else if (anim.equals(armor2)) {
+                anim=armor1;
+            } else if(anim.equals(fullGear1)){
+                anim= fullGear2;
+            } else{anim= fullGear1;}}
     }
     public void touchChest(){
         if(roomNum==3&&!chestTouch){
@@ -288,7 +314,6 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-
                         //if the item is equipped, add a star to it
                         if(item.equals(player.getEArmor())){
                             menuItem=new JMenuItem("* "+item.itemName);
@@ -315,7 +340,6 @@ public class Gameplay implements Runnable{
                 JMenuItem menuItem;
                 //for each item in the inventory, print it as a button. When that button is pressed, equip that item
                 if(player.getPlayerInventory().size()>0){
-                    int i=1;
                     for (Item item:player.getPlayerInventory()) {
                         //display each item
                         if(item.equals(player.getEArmor())){
@@ -334,10 +358,56 @@ public class Gameplay implements Runnable{
                                 //if you click on an item that's already equipped, unequip it
                                 if(item.equals(player.getEWeapon())||item.equals(player.getEArmor())){
                                     JOptionPane.showMessageDialog(sendFrametoNotif(),"Unequipped "+item.getItemName());
+                                    //depending on what was unequipped, change the sprite
+                                    if(item.equals(player.getEWeapon())){
+                                        if(anim.equals(weapon1)){
+                                            anim=noGear1;
+                                        }else if (anim.equals(weapon2)){
+                                            anim=noGear2;
+                                        } else if (anim.equals(fullGear1)) {
+                                            anim=armor1;
+                                        } else if (anim.equals(fullGear2)) {
+                                            anim=armor2;
+                                        }
+                                    }
+                                    if (item.equals(player.getEArmor())) {
+                                        if(anim.equals(armor1)){
+                                            anim=noGear1;
+                                        }else if (anim.equals(armor2)){
+                                            anim=noGear2;
+                                        } else if (anim.equals(fullGear1)) {
+                                            anim=weapon1;
+                                        } else if (anim.equals(fullGear2)) {
+                                            anim=weapon2;
+                                        }
+                                    }
                                     player.unequipItem(item);
                                 } else {
                                     JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
                                     player.equip(item);
+                                    //depending on what was equipped, change the sprite into the matching equipped sprite
+                                    if(item.equals(player.getEWeapon())){
+                                        if(anim.equals(noGear1)){
+                                            anim=weapon1;
+                                        }else if (anim.equals(noGear2)){
+                                            anim=weapon2;
+                                        } else if (anim.equals(armor1)) {
+                                            anim=fullGear1;
+                                        } else if (anim.equals(armor2)) {
+                                            anim=fullGear2;
+                                        }
+                                    }
+                                    if (item.equals(player.getEArmor())) {
+                                        if(anim.equals(noGear1)){
+                                            anim=armor1;
+                                        }else if (anim.equals(noGear2)){
+                                            anim=armor2;
+                                        } else if (anim.equals(weapon1)) {
+                                            anim=fullGear1;
+                                        } else if (anim.equals(weapon2)) {
+                                            anim=fullGear2;
+                                        }
+                                    }
                                 }
                             }
                         });
@@ -358,7 +428,6 @@ public class Gameplay implements Runnable{
                 JMenuItem menuItem;
                 //if there are items, for each in the inventory, print it as a button
                 if(player.getPlayerInventory().size()>0){
-                    int i=1;
                     for (Item item:player.getPlayerInventory()) {
 
                         //list items
