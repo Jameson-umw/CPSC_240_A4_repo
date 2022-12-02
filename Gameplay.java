@@ -189,25 +189,6 @@ public class Gameplay implements Runnable{
             case KeyEvent.VK_I:
                 openInventory(evt);
                 break;
-//                    while(true) {
-//                        player.printInventory();
-//                        try{
-//                            String name = "";
-//                        try {
-//                            name = JOptionPane.showInputDialog(frame,
-//                                    "What number item do you wish to equip", null);
-//                            if(name.equals(null)){break;}
-//                        }catch (NullPointerException e){
-//                            break;
-//                        }
-//                            int num = Integer.parseInt(name);
-//                            if(player.equipNum(num)){
-//                                break;}
-//                        } catch (NumberFormatException e){
-//
-//                        }
-//
-//                    }
 
         }
         walkCount++;
@@ -227,6 +208,7 @@ public class Gameplay implements Runnable{
         if(roomNum==3&&!chestTouch){
             if(485<=xPos && 590>=xPos && 285<=yPos && 370>=yPos){
                 chestTouch=true;
+                player.setHealth(100);
             }
         }
     }
@@ -245,16 +227,14 @@ public class Gameplay implements Runnable{
     public void touchArmorRack(){
         if(roomNum==1&&!obtainedArmor){
             if(485<=xPos && 610>=xPos && 135<=yPos && 265>=yPos){
-                player.generateArmor(turnCount,obtainedArmor);
-                obtainedArmor=true;
+                obtainedArmor=player.generateArmor(turnCount,obtainedArmor);
             }
         }
     }
     public void touchWeaponRack(){
         if(roomNum==1&&!obtainedWeapon){
             if(485<=xPos && 615>=xPos && 435<=yPos && 565>=yPos){
-                player.generateWeapon(turnCount,obtainedWeapon);
-                obtainedWeapon=true;
+                obtainedWeapon=player.generateWeapon(turnCount,obtainedWeapon);
             }
         }
     }
@@ -270,7 +250,6 @@ public class Gameplay implements Runnable{
         pm.add(equip);
         pm.add(drop);
 
-        Inventory inventory=new Inventory();
         JPopupMenu popupMenu=new JPopupMenu();
         //actionListener to each item
         check.addActionListener(new ActionListener() {
@@ -281,9 +260,6 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-                        //for checking
-                        //System.out.println(i+":"+item.itemName);
-                        //i++;
 
                         //if the item is equipped, add a star to it
                         if(item.equals(player.getEArmor())){
@@ -303,6 +279,8 @@ public class Gameplay implements Runnable{
                 }
             }
         });
+
+        // action listener for equipping and unequipping
         equip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -311,28 +289,31 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-                        //for checking
-                        //System.out.println(i+":"+item.itemName);
-                        //i++;
-
                         //display each item
-                        menuItem=new JMenuItem(item.itemName);
+                        if(item.equals(player.getEArmor())){
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else if (item.equals(player.getEWeapon())) {
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else {
+                            menuItem=new JMenuItem(item.itemName);
+                        }
                         popupMenu.add(menuItem);
 
                         menuItem.addActionListener(new ActionListener() {
                             //when item is clicked, equip it
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                //idk why it accepts an item, but it works
-                                //it doesn't recognize the item as equipped outside the selection, maybe it has something to do with the loop?
-                                inventory.equipItem(item);
-                                JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
                                 //if you click on an item that's already equipped, unequip it
                                 if(item.equals(player.getEWeapon())||item.equals(player.getEArmor())){
-                                    inventory.unequipItem(item);
+                                    JOptionPane.showMessageDialog(sendFrametoNotif(),"Unequipped "+item.getItemName());
+                                    player.unequipItem(item);
+                                } else {
+                                    JOptionPane.showMessageDialog(sendFrametoNotif(),"Equipped "+item.getItemName());
+                                    player.equip(item);
                                 }
                             }
                         });
+
                     }
                     popupMenu.show(frame,300,300);
                 } else {
@@ -351,22 +332,25 @@ public class Gameplay implements Runnable{
                 if(player.getPlayerInventory().size()>0){
                     int i=1;
                     for (Item item:player.getPlayerInventory()) {
-                        //for checking
-                        //System.out.println(i+":"+item.itemName);
-                        //i++;
 
                         //list items
-                        menuItem=new JMenuItem(item.itemName);
+                        if(item.equals(player.getEArmor())){
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else if (item.equals(player.getEWeapon())) {
+                            menuItem=new JMenuItem("* "+item.itemName);
+                        } else {
+                            menuItem=new JMenuItem(item.itemName);
+                        }
                         popupMenu.add(menuItem);
 
                         menuItem.addActionListener(new ActionListener() {
                             //drops the item that's clicked on
                             @Override
                             public void actionPerformed(ActionEvent e) {
-
+                                JOptionPane.showMessageDialog(sendFrametoNotif(),"Dropped "+item.getItemName());
+                                player.removeItem(item);
                             }
                         });
-
                     }
                     popupMenu.show(frame,300,300);
                 } else {
@@ -398,18 +382,6 @@ public class Gameplay implements Runnable{
                 slimeCount=0;
                 congratsCount=0;
                 turnCount++;
-                /*
-                int result = JOptionPane.showConfirmDialog(frame,"Would you like to save your progress?", "Save",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if(result == JOptionPane.YES_OPTION){
-                    player.saveGame(turnCount);
-                    System.out.println("save");
-                }else if (result == JOptionPane.NO_OPTION){
-                    System.out.println("not saved");
-                    }
-                 */
-
             }
 
         }

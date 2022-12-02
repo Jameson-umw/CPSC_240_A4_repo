@@ -28,6 +28,7 @@ public class Inventory {
                     equippedWeapon.changeEquip();
                     item.changeEquip();
                     equippedWeapon = (Weapon) item;
+                    System.out.println(equippedWeapon.itemName);
                 }catch (NullPointerException e){
                     item.changeEquip();
                     equippedWeapon = (Weapon) item;
@@ -45,17 +46,6 @@ public class Inventory {
         }
     }
 
-    public boolean equipItem(int num){
-        try {
-            Item item = items.get(num - 1);
-            equipItem(item);
-            return true;
-        } catch (IndexOutOfBoundsException e){
-
-        }
-        return false;
-
-    }
 
     // Changes equip status of a weapon or armor to false
     // can likely remove the first if statement, it is more or less a failsafe for performance should the code attempt to unequip a healing item
@@ -95,26 +85,12 @@ public class Inventory {
 
     // Removes an item from the inventory, and unequips the item should it be equipped
     public void remove(Item item){
-
         if(item.equals(equippedWeapon) || item.equals(equippedArmor)){
             unequipItem(item);
         }
         items.remove(item);
     }
 
-    public boolean remove(int num){
-        try {
-            Item item = items.get(num - 1);
-            if (item.equals(equippedWeapon) || item.equals(equippedArmor)) {
-                unequipItem(item);
-            }
-            items.remove(item);
-            return true;
-        } catch (IndexOutOfBoundsException e){
-
-        }
-        return false;
-    }
 
     // saveState is the method that saves the game. We dont call this method, however. Instead, call player.saveGame
     public void saveState(int turnCount){
