@@ -73,7 +73,15 @@ public class Gameplay implements Runnable{
         }
         catch(IOException e){}
         //start out with no gear
-        anim=noGear1;
+        //if have gear, like when continuing from save, open with gear
+        if(obtainedArmor==true&&obtainedWeapon==true){
+            anim=fullGear1;
+        } else if(obtainedArmor==true&&obtainedWeapon==false){
+            anim=armor1;
+        } else if(obtainedArmor==false&&obtainedWeapon==true){
+            anim=weapon1;
+        } else
+            anim=noGear1;
 
         //setting up frame and panel
         frame=new JFrame("Final Project");
@@ -131,7 +139,7 @@ public class Gameplay implements Runnable{
     protected void Paint(Graphics2D g) {
         g.drawImage(anim,xPos,yPos,null);
         if(roomNum==0){
-            JOptionPane.showMessageDialog(sendFrametoNotif(),"Press 'I' for inventory. Make sure to keep an eye on it items can break and enemies get harder!");
+            JOptionPane.showMessageDialog(sendFrametoNotif(),"Tap the screen to start. Press 'I' for inventory. Make sure to keep an eye on it items can break and enemies get harder!");
             roomNum=1;
         }
         if(roomNum==1){
@@ -362,6 +370,7 @@ public class Gameplay implements Runnable{
                                     JOptionPane.showMessageDialog(sendFrametoNotif(),"Unequipped "+item.getItemName());
                                     //depending on what was unequipped, change the sprite
                                     if(item.equals(player.getEWeapon())){
+                                        obtainedWeapon=false;
                                         if(anim.equals(weapon1)){
                                             anim=noGear1;
                                         }else if (anim.equals(weapon2)){
@@ -373,6 +382,7 @@ public class Gameplay implements Runnable{
                                         }
                                     }
                                     if (item.equals(player.getEArmor())) {
+                                        obtainedArmor=false;
                                         if(anim.equals(armor1)){
                                             anim=noGear1;
                                         }else if (anim.equals(armor2)){
@@ -389,6 +399,7 @@ public class Gameplay implements Runnable{
                                     player.equip(item);
                                     //depending on what was equipped, change the sprite into the matching equipped sprite
                                     if(item.equals(player.getEWeapon())){
+                                        obtainedWeapon=true;
                                         if(anim.equals(noGear1)){
                                             anim=weapon1;
                                         }else if (anim.equals(noGear2)){
@@ -400,6 +411,7 @@ public class Gameplay implements Runnable{
                                         }
                                     }
                                     if (item.equals(player.getEArmor())) {
+                                        obtainedArmor=true;
                                         if(anim.equals(noGear1)){
                                             anim=armor1;
                                         }else if (anim.equals(noGear2)){
