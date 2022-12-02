@@ -136,6 +136,7 @@ public class Gameplay implements Runnable{
                 }
             }
             if(lostCount>=50) {
+                frame.dispose();
                 System.exit(0);
             }
         }
@@ -227,14 +228,33 @@ public class Gameplay implements Runnable{
     public void touchArmorRack(){
         if(roomNum==1&&!obtainedArmor){
             if(485<=xPos && 610>=xPos && 135<=yPos && 265>=yPos){
-                obtainedArmor=player.generateArmor(turnCount,obtainedArmor);
+
+                int cases =player.generateArmor(turnCount,obtainedArmor);
+                switch (cases) {
+                    case 1:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "You already obtained that item");
+                    case 0:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                    case 2:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                        obtainedArmor = true;
+                    }
+                }
             }
         }
-    }
     public void touchWeaponRack(){
         if(roomNum==1&&!obtainedWeapon){
             if(485<=xPos && 615>=xPos && 435<=yPos && 565>=yPos){
-                obtainedWeapon=player.generateWeapon(turnCount,obtainedWeapon);
+                int cases =player.generateWeapon(turnCount,obtainedWeapon);
+                switch (cases) {
+                    case 1:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "You already obtained that item");
+                    case 0:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                    case 2:
+                        JOptionPane.showMessageDialog(sendFrametoNotif(), "An item was added to your inventory!");
+                        obtainedWeapon = true;
+                }
             }
         }
     }

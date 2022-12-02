@@ -28,7 +28,6 @@ public class Inventory {
                     equippedWeapon.changeEquip();
                     item.changeEquip();
                     equippedWeapon = (Weapon) item;
-                    System.out.println(equippedWeapon.itemName);
                 }catch (NullPointerException e){
                     item.changeEquip();
                     equippedWeapon = (Weapon) item;
@@ -58,15 +57,6 @@ public class Inventory {
                 item.changeEquip();
                 equippedArmor=null;
             }
-        }
-    }
-
-    //we can make this method later, while its very simple, im not sure yet on what we are doing with this just yet
-    public void print(){
-        int i=1;
-        for(Item item : items) {
-            System.out.println(i+ ": " + item.itemName);
-            i++;
         }
     }
 

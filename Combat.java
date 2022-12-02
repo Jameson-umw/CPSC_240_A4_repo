@@ -14,8 +14,6 @@ public class Combat {
             // enemy go next
             enemyCombat(player,enemy);
             // check winner
-            //@TODO Make this into a functioning thing
-            //@TODO Play the youve been killed screen
             if(player.getHealth()<=0){
                 player.fileDeleter();
                 break;
@@ -101,6 +99,8 @@ public class Combat {
         } else {
             enemy.setHealth(enemy.getHealth() - player.getPower());
         }
+
+        //TODO pop up window for items breaking
         try {
             player.getEWeapon().setDurability(wDurability - toughness);
             if (wDurability <= 0) {
